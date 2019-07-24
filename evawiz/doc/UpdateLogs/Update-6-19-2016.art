@@ -1,0 +1,76 @@
+Update of 6/19/2016
+
+对更新如有疑问请询eins@eva.run
+
+\section{c++/cudac的evawiz拓展}
+新增c++/cudac的evawiz扩展语法,通过扩展语法可以以非常简单的方式写出的使用GPU设备进行加速的cuda程序,同时,如果检测到无GPU设备,或者EvaSettings::SetMatrixPosition设置为MatrixHost时,程序以CPU模式运行.示例程序:
+\code{cpp}
+#include<evawiz>
+#include<iostream>
+using namespace std;
+using namespace evawiz;
+int main(){
+  cout<<"Hello Evawiz."<<endl;
+  Matrix arr;
+  int scale = 9;
+  arr.Init(1,10);
+  for (int i=0;i<10;i++)
+    arr(i) = 99-5;
+  cout <<arr<<endl;
+
+  arr.HostToDevice();
+#pragma evawiz launch kernel<<<i:5>>>(Matrix mat:arr,int s:scale)
+  {
+    mat(i)*=s;
+  }
+  arr.DeviceToHost();
+
+  cout<<arr<<endl;
+
+
+  return 0;
+}
+\end
+通过evawiz扩展写GPU程序,可以忽略所谓的线程结构之类和硬件的联系,并且可以在没有GPU的机器上调试程序,
+CPU模式调试程序,可以进入kernel函数内部查看变量值得变化,纯cuda代码的kernel函数并不被gdb所支持
+   程序需要使用evacc进行编译和连接,需要更换老版本Makefile为新版本Makefile:/opt/evawiz/evawiz/Template/Makefile, c++/c/cuda程序自动识别
+  
+
+\section{Matrix重要更新}
+为了更清晰的表意,原有继承Matrix的Random类更名为RandomMatrix 
+
+Matrix调整内部结构,最高支持8维矩阵,只有第1,2,3维度支持超过65535的下标
+
+Matrix支持ReShape操作,即变保持数据不变,但改变维度信息
+  详细见/opt/evawiz/evawiz/include/eva_matrix.h 
+
+Matrix 增加取元素函数at,
+    CPU模式下,at会做下标范围检查,gdb调试时也能够打印对应元素值
+    cuda kernel函数中,at不做下标检查
+
+\section{Module定义结构的变化}
+废弃原来的main.cu/main.cpp文件
+调试main函数入口,在*Module.cu/cpp中添加如下一行代码即可
+__DEBUG_MAIN__("input.ev")
+
+  详细见/opt/evawiz/evawiz/Template/目录下的代码文件内容
+
+\section{Module和eva内核交互数据,常用宏定义等}  
+详情参见/opt/evawiz/evawiz/include/eva_macros.h
+
+原有evawiz的两个宏InitVar  InitVar3 不推荐使用,新增:
+InitNameVariable("name",var,default_value);
+InitNameVariablePrint("name",var,default_value);
+InitVariable(var,default_value);
+InitVariablePrint(var,default_value);
+
+InitNameArray("name",array);
+InitNameArrayPrint("name",array);
+InitArray("name",array);
+InitArrayPrint("name",array);
+
+InitNameMatrix("name",matrix);
+InitNameMatrixPrint("name",matrix);
+InitMatrix("name",matrix);
+InitMatrixPrint("name",matrix);
+

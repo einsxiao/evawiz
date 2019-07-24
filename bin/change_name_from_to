@@ -1,0 +1,38 @@
+#!/bin/bash
+if ! [ $# == 3 ]; then
+  echo "Usage:
+	change_from_to [dir] [from_name] [to_name]
+  Change files with filename substring '[from_name]' to '[to_name]'.
+"
+  exit 0;
+fi
+basedir=$1
+fromname=$2
+toname=$3
+         
+#find $dir -type f|xargs sed -i "s/$fromname/$toname/g"
+echo "Processing files..."
+for dir in ` find $basedir -type d |sort -r`; do
+    #echo "In dir $dir:"
+    filelist=`\ls $dir|sort -r`
+    recdir=`pwd`
+    cd $dir
+    for file in $filelist; do
+        #mv "$file" "${file//$fromname/$toname}"
+        cname="${file//$fromname/$toname}"
+        if [ "xx$file" != "xx$cname" ];then
+            if [ -f "$cname" ] ; then 
+                echo "Cannot rename '$file' to '$cname': file with name '$cname' exist already in '$dir'."
+            elif [ -d "$cname" ]; then 
+                echo "Cannot rename '$file' to '$cname': directory with name '$cname' exist already in '$dir'."
+            else
+                echo "rename '$file' to '$cname'"
+                mv "$file" "$cname"
+            fi
+        fi
+    done
+    #echo "res:"
+    #ls
+    cd $recdir
+done
+echo "Operation finished."

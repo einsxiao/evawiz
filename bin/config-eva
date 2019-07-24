@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Evawiz environment config..."
+cd $HOME
+dir=$EVAWIZ_ROOT
+if ! [ -d $idr ];then
+  dir=/opt/evawiz
+fi
+re=`cat ~/.bashrc |grep "source $dir/evawiz.source"`
+if [ "x$re" == "x" ]; then
+  echo "source $dir/evawiz.source">>~/.bashrc
+  source $dir/evawiz.source
+fi

@@ -1,0 +1,5 @@
+#!/bin/sh
+EVA_LOAD_SILENT_MODE_TMP=$EVA_LOAD_SILENT_MODE
+export EVA_LOAD_SILENT_MODE=True
+source /opt/evawiz/bin/eva-load-env $@
+export EVA_LOAD_SILENT_MODE=$EVA_LOAD_SILENT_MODE_TMP

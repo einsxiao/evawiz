@@ -1,0 +1,9 @@
+Do[expr,{n}]
+  重复对expr求值n次，其中n为整数。返回值为Null.
+Do[expr,{i,n}]
+  重复对expr求值n次,求值时i一次取值1,2,...,n.返回值为Null.
+Do[expr,{i,m,n}]
+  i从m取值到n,依次对expr进行求值.返回值为Null.
+Do[expr,{i,x,y,incre}]
+  i取初值为x,每次增加incre,直到不小于y,依次对expr进行求值.返回值为Null.
+

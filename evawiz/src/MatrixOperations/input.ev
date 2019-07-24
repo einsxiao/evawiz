@@ -1,0 +1,11 @@
+#!/opt/evawiz/evawiz/bin/evawiz
+GetModule["MatrixOperations"]
+
+SetRunningMode["Gpu"]
+SetRunningMode["Cpu"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+
+nx=ny=nz=10;
+
+Print['start test']
+fftTest[]

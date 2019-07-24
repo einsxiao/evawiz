@@ -1,0 +1,154 @@
+#!/bin/sh
+###echo $#   #number of argument
+###echo $@   #all argument
+if [[ -t "$fd" || -p /dev/stdin ]] ; then
+    export EVA_LOAD_SILENT_MODE=True
+fi
+
+if [ $# -lt 1 ];then
+    echo -e "Usage: evaload [Program|Module]\n\n";
+    return
+fi
+
+is_exist_path()  
+{  
+    return 1;
+    test_str=$1  
+    source_str=$PATH
+    strings=$(echo $source_str | sed 's/:/ /g')  
+    for str in $strings; do    
+        #echo "test on $test_str ?= $str"
+        if [ "x"`echo $str|grep "^$test_str"` != "x" ]; then  
+            #echo 'existed already';
+            return 0
+        fi    
+    done 
+    #echo 'not exist';
+    return 1
+}
+
+found=False
+deal_path(){
+    path=$1
+    if ! [ -d $path ];then
+       return;
+    fi
+    tpath=$path/lib
+    if [ -d $tpath ];then
+        add_abs_lib $tpath
+        found=True
+    fi
+    tpath=$path/lib64
+    if [ -d $tpath ];then
+        add_abs_lib $tpath
+        found=True
+    fi
+    tpath=$path/bin
+    if [ -d $tpath ];then
+        add_abs_path $tpath
+        found=True
+    fi
+    tpath=$path/include
+    if [ -d $tpath ];then
+        add_abs_include $tpath
+        found=True
+    fi
+    if [ $found == False ]; then
+        add_abs_include $path
+        add_abs_path $path
+        add_abs_lib $path
+        found=True
+    fi
+    tpath=$path/env.source
+    if [ -f $tpath ]; then
+        source $tpath
+    fi
+}
+
+#check whether loaded before
+
+ever_not_found=False
+for pom in $@;do #program or module
+    found=False
+    path=$HOME/evawiz/$pom
+    if [ -d $path ]; then
+        if is_exist_path $path ;then
+            found=True
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Module $pom is already loaded. Loading again.";
+            fi
+            deal_path $path
+        else
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Loading module $pom"
+            fi
+            deal_path $path
+        fi
+    fi
+    path=$EVAWIZ_ROOT/programs/$pom
+    if [ -d $path ]; then
+        if is_exist_path $path ;then
+            found=True
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Program $pom is already loaded. Loading again.";
+            fi
+            deal_path $path
+        else
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Loading program $pom"
+            fi
+            deal_path $path
+        fi
+    fi
+    path=$EVAWIZ_ROOT/base/$pom
+    if [ -d $path ]; then
+        if is_exist_path $path ;then
+            found=True
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Program $pom is already loaded. Loading again.";
+            fi
+            deal_path $path
+        else
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Loading program $pom"
+            fi
+            deal_path $path
+        fi
+    fi
+    path=$EVAWIZ_ROOT/$pom
+    if [ -d $path ]; then
+        if is_exist_path $path ;then
+            found=True
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Program $pom is already loaded. Loading again.";
+            fi
+            deal_path $path
+        else
+            if [ "x$EVA_LOAD_SILENT_MODE" != "xTrue" ];then
+                echo "Loading program $pom"
+            fi
+            deal_path $path
+        fi
+    fi
+
+
+    if [ $found == False ];then
+        echo -e "Program or Module $pom not found.";
+        ever_not_found=True
+    fi
+done
+
+if [ ever_not_found == True ]; then
+    echo -e "You could use
+           eva get [module]
+                    to get a module.
+        or
+           eva load [program]
+                    to load a program.
+        to get what missed before lading it.\n";
+fi
+
+
+
+
+

@@ -1,0 +1,13 @@
+\title{Evawiz Language}
+Evawiz Language is based on Lisp and is very similar to Mathematica.
+\section{Basic types}
+Null: Null
+	Represent a Null value.
+Symbol: x, y, z
+	Symbols can appear without a value.
+	Symbolic calculation can be done directly.
+String: "hello world"
+Number: 3.2, 3,
+Complex Number: 2+3I,(3,4)
+List:   {1,2,3},f[1,2,3]
+	Index zero of a List is its head. The first element is with index 1, second with 2 and so forth. Part operator is "[[]]". Take the second part of f[1,2,3] should be in form f[1,2,3][[2]]

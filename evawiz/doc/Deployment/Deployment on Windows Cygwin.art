@@ -1,0 +1,28 @@
+\title{EVAWIZ Environment on Windows Cygwin}
+  EVAWIZ is a sharing platform and working environment based on EVA programming language. Windows Cygwin is also a compatible platform.
+
+\section{How to Deployment?}
+
+1.Preparing Cygwin on Windows(Windows 10 is tested.).
+    1). Install Cygwin. Go to Cygwin official site to download the newest "setup.exe" to install. 
+    2). After installation, copy the "setup.exe" to root dir of Cygwin.
+    3). Preparing requested packages. Download \download{packages.sh,packages.sh} and execute it to automately install. 
+\code{sh}
+chmod +x packages.sh 
+./packages.sh
+\end
+
+2.Downlaod \download{update-eva,update-eva} to prepare the nevironment.
+    You need to launch the cygwin terminal with Admin privileges and execute it.
+\code{sh}
+chmod +x update-eva
+./update-eva
+\end
+    there are 3 modes for the mommand. the miniaml only download necessary files. 
+
+3.Register or connect to an EVAWIZ account.
+    Execute "eva register" to register a new EVAWIZ account; execute "eva connect" to register an existing account. With an EVAWIZ accont, you can enjoy services of code management, email, calender and tasks ,et al. provided by EVAWIZ.
+    Wesite service is avialable at https://eva.run.
+
+
+

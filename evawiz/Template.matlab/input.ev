@@ -1,0 +1,12 @@
+#!/opt/evawiz/evawiz/bin/evawiz
+####################################################
+# This is an input test script for current module  #
+####################################################
+GetModule['Template']
+
+Print["\ntest of eva code defined in 'Template.eva'"]
+myAdd[-3,3]
+
+Print["\ntest of matlab code defined in 'myAdd.m'"]
+MatEvaluate["x=myAdd(-3,3);"]
+MatGetValue['x']

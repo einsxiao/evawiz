@@ -1,0 +1,58 @@
+\title{Cuda code in evacc}
+
+In original cuda coding environment, users need to take care of thread structure, memory operation and index of multi dimension matrix. And If no gpu device on your machine, you code is not runnable. Here we provide an \red{multi-thread extension to cuda c}\green{(EMTE)}. It enables the same code running both on gpu environment and cpu environment and decreases the complexity of gpu code.
+
+\section{Preparing writing an EMTE program}
+In shell execute command
+\code{shell}
+$ eva new test -l cuda 
+\end
+Then files "testModule.h", "testModule.cu", "Makefile" and "input.ev" will be ready. And neccessary code will also be ready.
+
+\section{EMTE grammar}
+EMET code 
+\code{c}
+/****************************/
+Matrix arr;
+arr.Init(2,3,3);
+for ( int i=0; i<3; i++)
+ for ( int j=0; j<3; j++)
+   arr(i,j) = i+j;
+cout<<arr<<endl;
+arr.HostToDevice();
+#pragma evawiz launch kernel<<<i:3,j:3>>>(Matrix mat:arr)
+{
+    mat(i,j)*=3;
+}
+arr.DeviceToHost();
+cout<<arr<<endl;
+\end
+
+Above code is equivalent to CPU code:
+\code{c}
+void kernel_func(Matrix mat,const int _ni,const int _nj)
+{
+    for ( int i=0; i<_ni; i++)
+      for ( int j=0; j<_nj; j++ )
+        mat(i,j)*=3;
+}
+...
+{
+    Matrix arr;
+    arr.Init(2,3,3);
+    arr= 3.14;
+    cout<<arr<<endl;
+    //arr.HostToDevice();
+    kernel_func(arr,3,3);
+    //arr.DeviceToHost();
+    cout<<arr<<endl;
+}
+\end
+And this piece of code can run parallel on Cuda Device properly. When the code is running on CPU in "CPU Mode", the data copy function "HostToDevice()" and "DeviceToHost()" will be ignored.
+
+Running mode can be set in both evawiz kernel, and code after it will running in corresponding mode.
+\code{eva}
+SetRunningMode['Gpu']
+SetRunningMode['Cpu']
+Print['Program is running in Mode:',GetRunningMode[] ]
+\end

@@ -1,0 +1,2 @@
+#!/opt/evawiz/bin/eva
+StringJoin['a','b']

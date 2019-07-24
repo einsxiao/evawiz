@@ -1,0 +1,10 @@
+#!/usr/bin/env evawiz
+f = File['OSModule.h','in'] 
+N = 3
+content = f.Read[ N ] 
+f.Close[]
+
+f=File['test.txt']
+
+f.Write["fdka;jfdka
+        fjd;ajf;d;kajf11111111111111111111111111111111111111111"]

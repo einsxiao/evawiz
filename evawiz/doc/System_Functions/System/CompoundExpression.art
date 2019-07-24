@@ -1,0 +1,13 @@
+CompoundExpression[]
+  返回空值Null;
+CompoundExpression[expr]
+  对expr求值并返回结果
+CompoundExpression[expr1,expr2,...,expr]
+  依次对expr1,expr2,...expr求值,返回expr的求值结果
+ 
+等价书写:
+  ;  <--> CompoundExpression[]
+  x; <--> CompoundExpression[x,Null]
+  x;y <--> CompoundExpression[x,y]
+  x;y;z <--> CompoundExpression[x,y,z]
+ 

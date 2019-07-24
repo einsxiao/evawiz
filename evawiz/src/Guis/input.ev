@@ -1,0 +1,8 @@
+#!/usr/bin/env evawiz
+GetModule["Guis"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+Runmod[]
+Tooltip['parameter a for length']
+a=3
+Tooltip['parameter b for width']
+b=4;

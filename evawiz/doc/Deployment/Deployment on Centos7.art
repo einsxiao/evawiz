@@ -1,0 +1,23 @@
+\title{EVAWIZ Environment on Centos}
+
+ EVAWIZ is sharing platform and working environment based on EVA programming language. Centos 7 is the reconmended Linux Distribution for EVAWIZ.
+
+\section{How to Deployment?}
+1.Preparing the Centos 7. A minimal Installation is enough for EVAWIZ to work.
+
+2.Download \download{update-eva,update-eva} to prepare the environment.
+ 1).For current user only:
+   Execute 'update-eva.sh' with current user.
+\code{sh}
+chmod +x packages.sh
+update-eva.sh
+\end
+  There are 3 modes for the command. The "std" mode only download necessary files. But there are still basic requirements on python2.7, gcc4.8, openmpi, cuda-7.0 and crypto(python2.7).
+ 2).For Cross-System:
+  Use 'root' to do these affairs.
+
+3.Register or connect to an EVAWIZ account.
+  Execute 'eva register' or 'eva connect'. After successful registeration, you will get an account for EVAWIZ services like, code management, email, calender and tasks, et  al. 
+  Web service is avialable at https://eva.run.
+  
+   

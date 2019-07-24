@@ -1,0 +1,38 @@
+CC	Makefile	/^CC = nvcc$/
+CC	Makefile.nvcc	3
+EXCU	Makefile	/^EXCU = evawiz$/
+FLAGS	Makefile	/^FLAGS = -O2$/
+FLAGS	Makefile	/^FLAGS = -g -G$/
+Flags	sysmake.sh	3
+INCLUDE	Makefile	/^INCLUDE = -I..\/include$/
+LIB	Makefile	/^LIB	= -L. -L..\/lib $/
+Matrix	in.txt	1
+Matrix	in.txt	11
+Matrix	x.m.log	3
+Mmain.cu	main.cu	/^int main(int argn,char* args[]){ \/\/ $/
+OBJECTS	Makefile	/^OBJECTS = $(patsubst %.cu, %.o, $(SRCS))$/
+PREFIX	Makefile	/^PREFIX = ~\/bin\/$/
+SRCS	Makefile	/^SRCS = $(wildcard *.cu)$/
+evawiz	main.cu	4
+X	main.o	1924
+_ZTVSt9basic_iosIcSt11char_traitsIcEE	main.o	355
+a	in.txt	272
+a	x.m	2
+all	Makefile	/^all: $(OBJECTS)$/
+author	make.sh	17
+author	modulemake.sh	6
+b	in.txt	65
+clean	Makefile	/^clean:$/
+dir	make.sh	18
+dir	modulemake.sh	7
+e	main.o	165
+install	Makefile	/^install:$/
+l	in.txt	58
+main.o	Makefile	/^main.o: main.cu$/
+modulename	make.sh	16
+modulename	modulemake.sh	5
+sm_20	main.o	351
+std	main.cu	3
+t	evawiz	323
+txt	TAGS	2
+x	in.txt	241

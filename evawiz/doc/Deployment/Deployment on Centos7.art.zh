@@ -1,0 +1,25 @@
+\title{EvaWiz Environment on Centos 7}
+
+EVAWIZ为免费的分享平台,提供一套以EVA语言为核心的写作开发和分享的环境以及工具. Cenos 7 系统为Evawiz推荐的标准部署环境.
+
+\section{部署步骤}
+1.准备CentOS7系统,使用Minimal安装即可(最小安装版,可根据自己需要安装更多选装包)
+
+2.下载\download{prepare.sh,prepare.sh}脚本到CentOS系统中. 
+ 1).部署当前用户可用的环境
+    使用当前用户执行update-eva.sh脚本.
+      update-eva.sh有三种模式minimal,standard,maximum. 其中minimal只包含必要的EVAWIZ文件,其他如python2.7,gcc4.8,emacs等环境需要用户准备好. maximum则包含所有预编译的环境 
+ 2).部署系统所有用户可用的环境
+    使用root用户执行update-eva.sh脚本. 然后执行 evawizd start, 启动EVAWIZ服务程序.
+
+3.注册或(并)连接EVAWIZ账号
+  执行eva register 或者 eva connect.注册成功后,自动获得EVAWIZ提供的eva.run邮件账号.
+
+  完成上述步骤之后,完整的Evawiz环境就部署好了.用户可以使用本地evawiz整套开发环境编写代码,管理程序,编写文档.并且可以发布,或者获得其他evawiz开发者的程序,源码,文档. 
+  
+\section{网页端服务}
+  使用刚刚注册的账号可以登录htps://eva.run及时查看自己的项目,使用EVAWIZ提供的邮件账号,日历,任务等服务.
+
+
+
+

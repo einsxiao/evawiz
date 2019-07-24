@@ -1,0 +1,11 @@
+Table[expr,{n}]
+  返回一个长度为n的列表,列表元素为expr依次求值结果.
+Table[expr,{i,n}]
+  返回一个长度为n的列表,列表元素为i依次取值为1到n对应的expr求值结果.
+Table[expr,{i,m,n}]
+  返回对i依次从m到n取值对应的expr求值结果罗列而成的列表.
+Table[expr,{i,x,y,incr}]
+  返回i取初值x,每次增加incr,直到不小于y,对应的expr求值结果罗列而成的列表
+
+递归形式:
+  Table[expr,{x___},{y___},z___] <-> Table[Table[expr,{x___}],{y___},z___]

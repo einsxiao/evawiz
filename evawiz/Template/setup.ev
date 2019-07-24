@@ -1,0 +1,7 @@
+#!/usr/bin/env evawiz
+Print['Preparing work for Module Template']
+System>>>
+chmod +x input.ev
+<<<;
+Python>>>
+<<<;

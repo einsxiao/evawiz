@@ -1,0 +1,270 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AddAttributes	module.cpp	/^int Module::AddAttributes(string funcName, string attribute){$/;"	f	class:Module
+AddAttributesList	systemmodule.cpp	/^int SystemModule::AddAttributesList(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+AddMemberFunction	module.cpp	/^int Module::AddMemberFunction(string funcName, MemberFunction func){$/;"	f	class:Module
+AddStaticFunction	module.cpp	/^int Module::AddStaticFunction(string funcName, StaticFunction func){$/;"	f	class:Module
+AlgebraicModule	algebraicmodule.cpp	/^AlgebraicModule::AlgebraicModule(Evaluation*eva):Module("Algebraic",eva){$/;"	f	class:AlgebraicModule
+And	arithmaticsmodule.cpp	/^int ArithmaticsModule::And(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+ApplyPatternPairs	pattern.cpp	/^int Pattern::ApplyPatternPairs(List*Argv,map<List,List>&pairs){$/;"	f	class:Pattern
+ArithmaticsModule	arithmaticsmodule.cpp	/^ArithmaticsModule::ArithmaticsModule(Evaluation*eva):Module("Arithmatics",eva){$/;"	f	class:ArithmaticsModule
+At	Argv.cpp	/^List *&List::At(int id){$/;"	f	class:List
+AtomQ	Argv.cpp	/^bool List::AtomQ(){$/;"	f	class:List
+Attributes	systemmodule.cpp	/^int SystemModule::Attributes(List& Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+Begin	Argv.cpp	/^vector<List*>::iterator List::Begin(){$/;"	f	class:List
+Begin	valuetable.cpp	/^ValueTable::iterator ValueTable::Begin(){$/;"	f	class:ValueTable
+CUOBJECTS	Makefile	/^CUOBJECTS = $(patsubst %.cu, %.o, $(CUSRCS))$/;"	m
+CUSRCS	Makefile	/^CUSRCS = $(wildcard *.cu) $/;"	m
+Clear	Argv.cpp	/^int List::Clear(){$/;"	f	class:List
+Clear	valuetable.cpp	/^bool ValueTable::Clear(List&pattern){$/;"	f	class:ValueTable
+Clear	valuetable.cpp	/^bool ValueTable::Clear(string key){$/;"	f	class:ValueTable
+Compare	gmath.cpp	/^int gmath::Compare(string num1, string num2){$/;"	f	class:gmath
+Compare	Argv.cpp	/^int  List::Compare(List *l1, List *l2) {$/;"	f	class:List
+Compare	pattern.cpp	/^int Pattern::Compare(List&pat1,List&pat2){$/;"	f	class:Pattern
+Compare_P	pattern.cpp	/^int Pattern::Compare_P(List*pat1,List*pat2){$/;"	f	class:Pattern
+CompoundExpression	systemmodule.cpp	/^int SystemModule::CompoundExpression(List& Argv, Evaluation * evaluation){$/;"	f	class:SystemModule
+Decrement	arithmaticsmodule.cpp	/^int ArithmaticsModule::Decrement(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+Deepen	Argv.cpp	/^int  List::Deepen(){$/;"	f	class:List
+Deepen	Argv.cpp	/^int List::Deepen(List*&Argv){$/;"	f	class:List
+Delete	Argv.cpp	/^bool List::Delete(int pos){$/;"	f	class:List
+DeleteNoClear	Argv.cpp	/^bool List::DeleteNoClear(){$/;"	f	class:List
+DeleteNoClear	Argv.cpp	/^bool List::DeleteNoClear(int pos){$/;"	f	class:List
+DeleteNoClear	Argv.cpp	/^bool List::DeleteNoClear(vector<List*>::iterator iter){$/;"	f	class:List
+Dimensions	Argv.cpp	/^int List::Dimensions(List&Argv,List&dim){$/;"	f	class:List
+Do	systemmodule.cpp	/^int SystemModule::Do(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+Drop	listmodule.cpp	/^int ListModule::Drop(List&Argv,Evaluation*evaluation){$/;"	f	class:ListModule
+ERROR_RETURN	importevaobj.cpp	740;"	d	file:
+ERROR_RETURN	importevaobj.cpp	84;"	d	file:
+Empty	Argv.cpp	/^bool List::Empty(){$/;"	f	class:List
+End	importevaobj.cpp	/^bool ImportList::End(){$/;"	f	class:ImportList
+End	Argv.cpp	/^vector<List*>::iterator List::End(){$/;"	f	class:List
+End	valuetable.cpp	/^ValueTable::iterator ValueTable::End(){$/;"	f	class:ValueTable
+Equal	arithmaticsmodule.cpp	/^int ArithmaticsModule::Equal(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+Exist	Argv.cpp	/^bool List::Exist(List &Argv){$/;"	f	class:List
+Exist	Argv.cpp	/^int List::Exist(string key){$/;"	f	class:List
+ExpressionCompare	Argv.cpp	/^int  List::ExpressionCompare(List *l1, List *l2) {$/;"	f	class:List
+ExpressionSort	Argv.cpp	/^int List::ExpressionSort(){$/;"	f	class:List
+Factorial	arithmaticsmodule.cpp	/^int ArithmaticsModule::Factorial(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+FileExist	sout.cpp	/^bool evawiz::FileExist(string filename){$/;"	f	class:evawiz
+Find	Argv.cpp	/^vector<List*>::iterator List::Find(List &Argv){$/;"	f	class:List
+Find	valuetable.cpp	/^int ValueTable::Find(List& pattern,iterator &piter){$/;"	f	class:ValueTable
+Find_P	valuetable.cpp	/^int ValueTable::Find_P(List* pattern,iterator &piter){$/;"	f	class:ValueTable
+First	Argv.cpp	/^List *&List::First(){$/;"	f	class:List
+Flatten	Argv.cpp	/^int List::Flatten(){$/;"	f	class:List
+Flatten	listmodule.cpp	/^int ListModule::Flatten(List&Argv,Evaluation *evaluation){$/;"	f	class:ListModule
+For	systemmodule.cpp	/^int SystemModule::For(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+FunctionKey	Argv.cpp	/^FunctionKey::FunctionKey(List* module, List* func){$/;"	f	class:FunctionKey
+FunctionKey	Argv.cpp	/^FunctionKey::FunctionKey(string mod, string func){$/;"	f	class:FunctionKey
+Get	meiomodule.cpp	/^int MeioModule::Get(List&Argv,Evaluation*eva){$/;"	f	class:MeioModule
+GetList	importevaobj.cpp	/^int ImportList::GetList( List *parentList ,int depth ){ \/\/ the return value "0" or "error code and detail$/;"	f	class:ImportList
+GetList	importevaobj.cpp	/^int ImportList::GetList(string str,int depth,List&Argv){$/;"	f	class:ImportList
+GetList_P	importevaobj.cpp	/^List* ImportList::GetList_P(string str,int depth){$/;"	f	class:ImportList
+GetModule	systemmodule.cpp	/^int SystemModule::GetModule(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+Greater	arithmaticsmodule.cpp	/^int ArithmaticsModule::Greater(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+GreaterEqual	arithmaticsmodule.cpp	/^int ArithmaticsModule::GreaterEqual(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+Head	Argv.cpp	/^List List::Head(){$/;"	f	class:List
+Head	listmodule.cpp	/^int ListModule::Head(List&Argv,Evaluation *evaluation){$/;"	f	class:ListModule
+HoldPattern	systemmodule.cpp	/^int SystemModule::HoldPattern(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+INCLUDE	Makefile	/^INCLUDE=-I..\/..\/include$/;"	m
+If	systemmodule.cpp	/^int SystemModule::If(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+ImportList	importevaobj.cpp	/^ImportList::ImportList(istream *istr_in,bool interactively){$/;"	f	class:ImportList
+ImportList	importevaobj.cpp	/^ImportList::ImportList(string buffer){$/;"	f	class:ImportList
+In	systemmodule.cpp	/^int SystemModule::In(List &Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+Increment	arithmaticsmodule.cpp	/^int ArithmaticsModule::Increment(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+Insert	Argv.cpp	/^bool List::Insert(int pos,List &Argv){$/;"	f	class:List
+Insert	Argv.cpp	/^bool List::Insert(int pos,List *Argv){$/;"	f	class:List
+Insert	Argv.cpp	/^bool List::Insert(iterator pos,iterator spos, iterator epos){$/;"	f	class:List
+Insert	valuetable.cpp	/^ValueTable::iterator ValueTable::Insert(List &left,List &right){$/;"	f	class:ValueTable
+Insert	valuetable.cpp	/^ValueTable::iterator ValueTable::Insert(List &rule){$/;"	f	class:ValueTable
+Insert_P	valuetable.cpp	/^ValueTable::iterator ValueTable::Insert_P(List *left,List *right){$/;"	f	class:ValueTable
+Insert_P	valuetable.cpp	/^ValueTable::iterator ValueTable::Insert_P(List* rule){$/;"	f	class:ValueTable
+IntegerPlus	gmath.cpp	/^int gmath::IntegerPlus(string num1,string num2,string &num3){$/;"	f	class:gmath
+IntegerPower	gmath.cpp	/^int gmath::IntegerPower(string num1,string num2,string &num3){$/;"	f	class:gmath
+IntegerQ	gmath.cpp	/^bool gmath::IntegerQ(string num){$/;"	f	class:gmath
+IntegerSubstract	gmath.cpp	/^int gmath::IntegerSubstract(string num1,string num2,string &num3){ \/\/num1>=0` num2>=0`$/;"	f	class:gmath
+IntegerTimes	gmath.cpp	/^int gmath::IntegerTimes(string num1,string num2,string &num3) {$/;"	f	class:gmath
+Inverse	gmath.cpp	/^string gmath::Inverse(string num){$/;"	f	class:gmath
+IteratorToList	listmodule.cpp	/^int ListModule::IteratorToList(List &Argv,Evaluation *evaluation){$/;"	f	class:ListModule
+Last	Argv.cpp	/^List *&List::Last(){$/;"	f	class:List
+Length	Argv.cpp	/^int List::Length(){$/;"	f	class:List
+Less	arithmaticsmodule.cpp	/^int ArithmaticsModule::Less(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+LessEqual	arithmaticsmodule.cpp	/^int ArithmaticsModule::LessEqual(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+List	Argv.cpp	/^List::List( string head, string key){$/;"	f	class:List
+List	Argv.cpp	/^List::List(){$/;"	f	class:List
+List	Argv.cpp	/^List::List(List &other,int n,...){$/;"	f	class:List
+List	Argv.cpp	/^List::List(List *other){$/;"	f	class:List
+List	Argv.cpp	/^List::List(const List &other){$/;"	f	class:List
+List	Argv.cpp	/^List::List(string key){$/;"	f	class:List
+ListModule	listmodule.cpp	/^ListModule::ListModule(Evaluation*eva):Module("List",eva){$/;"	f	class:ListModule
+Log	arithmaticsmodule.cpp	/^int ArithmaticsModule::Log(List&Argv, Evaluation *evaluation){$/;"	f	class:ArithmaticsModule
+Log	gmath.cpp	/^int gmath::Log(string num1, string &num2){$/;"	f	class:gmath
+MatchQ	systemmodule.cpp	/^int SystemModule::MatchQ(List& Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+MatchQ_P	pattern.cpp	/^bool Pattern::MatchQ_P(List*Argv,List*pattern){$/;"	f	class:Pattern
+MeioModule	meiomodule.cpp	/^MeioModule::MeioModule(Evaluation*eva):Module("IO",eva){$/;"	f	class:MeioModule
+Module	module.cpp	/^Module::Module(string name,Evaluation *eva){$/;"	f	class:Module
+ModuleList	systemmodule.cpp	/^int SystemModule::ModuleList(List&Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+NOT_ENOUGH_LIST	importevaobj.cpp	739;"	d	file:
+NVCC	Makefile	/^NVCC = nvcc$/;"	m
+NVFLAGS	Makefile	/^NVFLAGS = -O2$/;"	m
+NVFLAGS	Makefile	/^NVFLAGS = -g -G$/;"	m
+NegativeQ	gmath.cpp	/^bool gmath::NegativeQ(string num){$/;"	f	class:gmath
+NonNegativeQ	gmath.cpp	/^bool gmath::NonNegativeQ(string num){$/;"	f	class:gmath
+Not	arithmaticsmodule.cpp	/^int ArithmaticsModule::Not(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+NumberQ	gmath.cpp	/^bool gmath::NumberQ(string str){$/;"	f	class:gmath
+NumberQ	Argv.cpp	/^bool List::NumberQ(){$/;"	f	class:List
+NumberQ	Argv.cpp	/^bool List::NumberQ(string str){$/;"	f	class:List
+OBJECTS	Makefile	/^OBJECTS = $(patsubst %.cpp, %.o, $(SRCS))$/;"	m
+OPERATOR_PUSH	importevaobj.cpp	738;"	d	file:
+OPERATOR_PUSH	importevaobj.cpp	83;"	d	file:
+OPERATOR_SET	importevaobj.cpp	750;"	d	file:
+OPERATOR_SET	importevaobj.cpp	875;"	d	file:
+OUT	Makefile	/^OUT=libbasic.so$/;"	m
+OperatorPriorityLevel	importevaobj.cpp	/^int ImportList::OperatorPriorityLevel(string oper){$/;"	f	class:ImportList
+Options	systemmodule.cpp	/^int SystemModule::Options(List& Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+Or	arithmaticsmodule.cpp	/^int ArithmaticsModule::Or(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+OrderForm	gmath.cpp	/^string gmath::OrderForm(long id){$/;"	f	class:gmath
+Out	systemmodule.cpp	/^int SystemModule::Out(List &Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+Parenthesis	systemmodule.cpp	/^int SystemModule::Parenthesis(List& Argv, Evaluation * evaluation){$/;"	f	class:SystemModule
+Part	listmodule.cpp	/^int ListModule::Part(List&Argv,Evaluation*evaluation){$/;"	f	class:ListModule
+Pattern	pattern.cpp	/^Pattern::Pattern(){$/;"	f	class:Pattern
+PatternCompare	systemmodule.cpp	/^int SystemModule::PatternCompare(List&Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+Plus	arithmaticsmodule.cpp	/^int ArithmaticsModule::Plus(List&Argv, Evaluation *evaluation){$/;"	f	class:ArithmaticsModule
+Plus	gmath.cpp	/^int gmath::Plus(string num1,string num2,string &num3){$/;"	f	class:gmath
+Postfix	systemmodule.cpp	/^int SystemModule::Postfix(List& Argv, Evaluation * evaluation){$/;"	f	class:SystemModule
+Power	arithmaticsmodule.cpp	/^int ArithmaticsModule::Power(List&Argv, Evaluation *evaluation){$/;"	f	class:ArithmaticsModule
+Power	gmath.cpp	/^int gmath::Power(string num1, string num2, string &num3){$/;"	f	class:gmath
+Prefix	systemmodule.cpp	/^int SystemModule::Prefix(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+Print	systemmodule.cpp	/^int SystemModule::Print(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+PushBack	Argv.cpp	/^bool List::PushBack(List &Argv){$/;"	f	class:List
+PushBack	Argv.cpp	/^bool List::PushBack(List *Argv){$/;"	f	class:List
+PushBack	Argv.cpp	/^bool List::PushBack(string thishead, string thiskey){$/;"	f	class:List
+PushBack	Argv.cpp	/^bool List::PushBack(string thiskey){$/;"	f	class:List
+ReadList	meiomodule.cpp	/^int MeioModule::ReadList(List&Argv,Evaluation*evaluation){$/;"	f	class:MeioModule
+RegisterFunctions	algebraicmodule.cpp	/^int AlgebraicModule::RegisterFunctions(){$/;"	f	class:AlgebraicModule
+RegisterFunctions	arithmaticsmodule.cpp	/^int ArithmaticsModule::RegisterFunctions(){$/;"	f	class:ArithmaticsModule
+RegisterFunctions	listmodule.cpp	/^int ListModule::RegisterFunctions(){$/;"	f	class:ListModule
+RegisterFunctions	meiomodule.cpp	/^int MeioModule::RegisterFunctions(){$/;"	f	class:MeioModule
+RegisterFunctions	systemmodule.cpp	/^int SystemModule::RegisterFunctions(){$/;"	f	class:SystemModule
+Replace	systemmodule.cpp	/^int SystemModule::Replace(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+ReplaceAll	pattern.cpp	/^int Pattern::ReplaceAll(List &Argv, const List &rule,bool repeated){$/;"	f	class:Pattern
+ReplaceAll	systemmodule.cpp	/^int SystemModule::ReplaceAll(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+ReplaceAll_P	pattern.cpp	/^int Pattern::ReplaceAll_P(List *Argv, List *rule,bool repeated){$/;"	f	class:Pattern
+ReplaceRepeated	systemmodule.cpp	/^int SystemModule::ReplaceRepeated(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+RuleList	Argv.cpp	/^RuleList::RuleList(List* lhs,List *rhs){$/;"	f	class:RuleList
+RuleQ_P	pattern.cpp	/^bool Pattern::RuleQ_P(List*Argv){$/;"	f	class:Pattern
+SRCS	Makefile	/^SRCS = $(wildcard *.cpp) $/;"	m
+Set	Argv.cpp	/^bool List::Set( string head, string key){$/;"	f	class:List
+Set	Argv.cpp	/^bool List::Set(List &other){$/;"	f	class:List
+Set	Argv.cpp	/^bool List::Set(List *lhead,int n, ...){$/;"	f	class:List
+Set	Argv.cpp	/^bool List::Set(List *other){$/;"	f	class:List
+Set	Argv.cpp	/^bool List::Set(string key){$/;"	f	class:List
+Set	systemmodule.cpp	/^int SystemModule::Set(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+SetAttributesList	systemmodule.cpp	/^int SystemModule::SetAttributesList(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+SetDelayed	systemmodule.cpp	/^int SystemModule::SetDelayed(List& Argv,Evaluation *evaluation){$/;"	f	class:SystemModule
+SetOptions	systemmodule.cpp	/^int SystemModule::SetOptions(List& Argv, Evaluation *evaluation){$/;"	f	class:SystemModule
+SetTo	Argv.cpp	/^bool List::SetTo( int pos ){\/\/set to be sub Argv$/;"	f	class:List
+SetToFirst	Argv.cpp	/^bool List::SetToFirst(){$/;"	f	class:List
+SetToLast	Argv.cpp	/^bool List::SetToLast(){$/;"	f	class:List
+SimpleSimplify	algebraicmodule.cpp	/^int AlgebraicModule::SimpleSimplify(List&Argv, Evaluation*evaluation){$/;"	f	class:AlgebraicModule
+SimpleSimplifyRulesInit	algebraicmodule.cpp	/^int AlgebraicModule::SimpleSimplifyRulesInit(){$/;"	f	class:AlgebraicModule
+Size	Argv.cpp	/^int List::Size(){$/;"	f	class:List
+Sort	Argv.cpp	/^int List::Sort(){$/;"	f	class:List
+Sort	listmodule.cpp	/^int ListModule::Sort(List&Argv,Evaluation *evaluation){$/;"	f	class:ListModule
+SpecialChar	importevaobj.cpp	/^const string ImportList::SpecialChar=" \\n\\t\\"\\'\\\\[](){},.;+-*\/^~!@#$%&|.:=`_<>";$/;"	m	class:ImportList	file:
+StringCompare	sout.cpp	/^int evawiz::StringCompare(string s1,string s2){$/;"	f	class:evawiz
+StringQ	Argv.cpp	/^bool List::StringQ(){$/;"	f	class:List
+StringQ	Argv.cpp	/^bool List::StringQ(string str){$/;"	f	class:List
+Swap	Argv.cpp	/^bool List::Swap(List &Argv){ \/\/ change the content with $/;"	f	class:List
+Swap	Argv.cpp	/^bool List::Swap(List&l1,List&l2){$/;"	f	class:List
+Swap_P	Argv.cpp	/^bool List::Swap_P(List*l1,List*l2){$/;"	f	class:List
+SymbolQ	Argv.cpp	/^bool List::SymbolQ(){$/;"	f	class:List
+SymbolQ	Argv.cpp	/^bool List::SymbolQ(string str){$/;"	f	class:List
+System	systemmodule.cpp	/^int SystemModule::System(List&Argv, Evaluation*evaluation){$/;"	f	class:SystemModule
+SystemModule	systemmodule.cpp	/^SystemModule::SystemModule(Evaluation*eva):Module("System",eva){$/;"	f	class:SystemModule
+Table	listmodule.cpp	/^int ListModule::Table(List&Argv,Evaluation*evaluation){$/;"	f	class:ListModule
+Take	listmodule.cpp	/^int ListModule::Take(List&Argv,Evaluation*evaluation){$/;"	f	class:ListModule
+Times	arithmaticsmodule.cpp	/^int ArithmaticsModule::Times(List&Argv, Evaluation *evaluation){$/;"	f	class:ArithmaticsModule
+Times	gmath.cpp	/^int gmath::Times(string num1, string num2, string &num3){$/;"	f	class:gmath
+ToExpression	importevaobj.cpp	/^int ImportList::ToExpression(string str,List&Argv){$/;"	f	class:ImportList
+ToExpression	systemmodule.cpp	/^int SystemModule::ToExpression(List& Argv, Evaluation*evaluation){$/;"	f	class:SystemModule
+ToExpression_P	importevaobj.cpp	/^List * ImportList::ToExpression_P(string str){$/;"	f	class:ImportList
+ToFullFormString	Argv.cpp	/^string List::ToFullFormString(){$/;"	f	class:List
+ToInteger	gmath.cpp	/^long gmath::ToInteger(string num){$/;"	f	class:gmath
+ToList	Argv.cpp	/^int List::ToList(){$/;"	f	class:List
+ToNormalString	Argv.cpp	/^string List::ToNormalString(){$/;"	f	class:List
+ToNumber	Argv.cpp	/^double List::ToNumber(){$/;"	f	class:List
+ToReal	gmath.cpp	/^double gmath::ToReal(string num){$/;"	f	class:gmath
+ToString	Argv.cpp	/^string List::ToString(){$/;"	f	class:List
+ToString	Argv.cpp	/^string List::ToString(List *parentList, List *Argv){$/;"	f	class:List
+ToString	sout.cpp	/^template<> string evawiz::ToString(long num ){$/;"	f	class:evawiz
+ToStringPriorityLevel	importevaobj.cpp	/^int ImportList::ToStringPriorityLevel(string oper){$/;"	f	class:ImportList
+Transpose	sout.cpp	/^template<> void evawiz::Transpose(double&in,string&out){$/;"	f	class:evawiz
+Transpose	sout.cpp	/^template<> void evawiz::Transpose(float&in,string&out){$/;"	f	class:evawiz
+Transpose	sout.cpp	/^template<> void evawiz::Transpose(int&in,string&out){$/;"	f	class:evawiz
+Transpose	sout.cpp	/^template<> void evawiz::Transpose(long&in,string&out){$/;"	f	class:evawiz
+Transpose	sout.cpp	/^template<> void evawiz::Transpose(string&in,double&out){$/;"	f	class:evawiz
+Trunc	gmath.cpp	/^long gmath::Trunc(string num){$/;"	f	class:gmath
+UnEqual	arithmaticsmodule.cpp	/^int ArithmaticsModule::UnEqual(List&Argv,Evaluation*evaluation){$/;"	f	class:ArithmaticsModule
+Value	valuetable.cpp	/^List ValueTable::Value(List &Argv){$/;"	f	class:ValueTable
+Value	valuetable.cpp	/^List ValueTable::Value(string key){$/;"	f	class:ValueTable
+ValueTable	valuetable.cpp	/^ValueTable::ValueTable(){$/;"	f	class:ValueTable
+Value_P	valuetable.cpp	/^List* ValueTable::Value_P(List*Argv){$/;"	f	class:ValueTable
+While	systemmodule.cpp	/^int SystemModule::While(List&Argv,Evaluation*evaluation){$/;"	f	class:SystemModule
+at	Argv.cpp	/^List &List::at(int id){$/;"	f	class:List
+begin	Argv.cpp	/^vector<List*>::iterator List::begin(){$/;"	f	class:List
+compare	Argv.cpp	/^int  List::compare(List &l2) {$/;"	f	class:List
+drop	listmodule.cpp	/^static int drop(List*expr, List* iter){$/;"	f	file:
+end	Argv.cpp	/^vector<List*>::iterator List::end(){$/;"	f	class:List
+esize	Argv.cpp	/^int List::esize(){$/;"	f	class:List
+expressionCompare	Argv.cpp	/^static int expressionCompare(List *l1,List*l2){$/;"	f	file:
+expressionLess	Argv.cpp	/^bool List::expressionLess(const List*l1,const List*l2){$/;"	f	class:List
+first	Argv.cpp	/^List &List::first(){$/;"	f	class:List
+getChar	importevaobj.cpp	/^bool ImportList::getChar( char &ch){ \/\/ read in a char, and move the position pointer forward$/;"	f	class:ImportList
+getChar	importevaobj.cpp	/^bool ImportList::getChar( char &ch, int n ){\/\/ will not change the position pointer$/;"	f	class:ImportList
+getRecentNonSpace	importevaobj.cpp	/^char ImportList::getRecentNonSpace(){\/\/ will not change the position pointer$/;"	f	class:ImportList
+isSpecialChar	importevaobj.cpp	/^bool ImportList::isSpecialChar(char ch){$/;"	f	class:ImportList
+isSpecialCharArray	importevaobj.cpp	/^bool ImportList::isSpecialCharArray[]={0};$/;"	m	class:ImportList	file:
+last	Argv.cpp	/^List &List::last(){$/;"	f	class:List
+listFormEnumInit	Argv.cpp	/^static int listFormEnumInit(){$/;"	f	file:
+matchq	pattern.cpp	/^bool Pattern::matchq(List*Argv,List*pattern,map<List,List> &pairs,int pos1,int pos2){$/;"	f	class:Pattern
+newList	Argv.cpp	/^List *List::newList(){\/\/ make an asignment$/;"	f	class:List
+newList	Argv.cpp	/^List *List::newList(List &other){\/\/ make an asignment$/;"	f	class:List
+newList	Argv.cpp	/^List *List::newList(List *lhead,int n, ...){$/;"	f	class:List
+newList	Argv.cpp	/^List *List::newList(List *other){\/\/only create the new pointer$/;"	f	class:List
+newList	Argv.cpp	/^List *List::newList(string head,string key){$/;"	f	class:List
+newList	Argv.cpp	/^List *List::newList(string key){$/;"	f	class:List
+operator !=	Argv.cpp	/^bool List::operator!=(List &other){$/;"	f	class:List
+operator !=	Argv.cpp	/^bool List::operator!=(string key){$/;"	f	class:List
+operator ()	Argv.cpp	/^List *&List::operator()(int id){$/;"	f	class:List
+operator <	Argv.cpp	/^bool List::operator< (const List &other) const{$/;"	f	class:List
+operator =	Argv.cpp	/^List &List::operator=(const List &other){$/;"	f	class:List
+operator =	Argv.cpp	/^List &List::operator=(const pair<string,string> &spair){$/;"	f	class:List
+operator =	Argv.cpp	/^List &List::operator=(const string &key){$/;"	f	class:List
+operator ==	Argv.cpp	/^bool List::operator==(List &other){$/;"	f	class:List
+operator ==	Argv.cpp	/^bool List::operator==(string key){$/;"	f	class:List
+operator >	Argv.cpp	/^bool List::operator> (List &other){if ( compare( other ) >  0 ) return true;}$/;"	f	class:List
+operator []	Argv.cpp	/^List &List::operator[](int id){\/\/???????? boudary limit eccess$/;"	f	class:List
+patternLess_P	pattern.cpp	/^bool Pattern::patternLess_P(const List*pat1,const List*pat2){$/;"	f	class:Pattern
+pointerLess	Argv.cpp	/^bool List::pointerLess(const List*l1,const List*l2){$/;"	f	class:List
+rollBack	importevaobj.cpp	/^bool ImportList::rollBack( int n){\/\/ rollBack the last n-th chars to buffer n>=0;$/;"	f	class:ImportList
+scr	systemmodule.cpp	/^static int scr(string &str,string ori,string rep){$/;"	f	file:
+setStaticMember	importevaobj.cpp	/^int ImportList::setStaticMember(){$/;"	f	class:ImportList
+size	Argv.cpp	/^int List::size(){$/;"	f	class:List
+specialCharReplacement	systemmodule.cpp	/^int specialCharReplacement(string &str){$/;"	f
+system_with_print	systemmodule.cpp	/^int system_with_print(string cmd, vector<string>&result){$/;"	f
+take	listmodule.cpp	/^static int take(List*expr,List*iter){\/\/expr should make sure to be a nonatom$/;"	f	file:
+unRegisterFunctions	module.cpp	/^int Module::unRegisterFunctions(){$/;"	f	class:Module
+~AlgebraicModule	algebraicmodule.cpp	/^AlgebraicModule::~AlgebraicModule(){};$/;"	f	class:AlgebraicModule
+~ArithmaticsModule	arithmaticsmodule.cpp	/^ArithmaticsModule::~ArithmaticsModule(){};$/;"	f	class:ArithmaticsModule
+~ImportList	importevaobj.cpp	/^ImportList::~ImportList(){};$/;"	f	class:ImportList
+~List	Argv.cpp	/^List::~List(){$/;"	f	class:List
+~ListModule	listmodule.cpp	/^ListModule::~ListModule(){};$/;"	f	class:ListModule
+~MeioModule	meiomodule.cpp	/^MeioModule::~MeioModule(){};$/;"	f	class:MeioModule
+~Module	module.cpp	/^Module::~Module(){};$/;"	f	class:Module
+~Pattern	pattern.cpp	/^Pattern::~Pattern(){$/;"	f	class:Pattern
+~SystemModule	systemmodule.cpp	/^SystemModule::~SystemModule(){};$/;"	f	class:SystemModule
+~ValueTable	valuetable.cpp	/^ValueTable::~ValueTable(){$/;"	f	class:ValueTable

@@ -1,0 +1,162 @@
+#!/bin/bash
+OS=`uname -o`
+
+if [ $# == 1 ] && [ $1 == '-h' ]; then
+    echo "usage: update-eva |[operation]
+    If no argument is given, operation is treated as standard.
+    Operation value and meaning:
+    std(default way for normal user)
+        update with standard(minimal) download.
+    mid 
+        update with midium download.
+    max(default way for admin)
+        update with maximun download.
+    test
+        just test update-eva without downling things
+"
+    exit 0
+fi
+if [ $# == 1 ]; then
+    OPERATION=$1
+else
+    OPERATION=std
+fi
+
+if [ "x$EVAWIZ_PROXY" == "x" ]; then
+    export RSYNC_PROXY=$EVAWIZ_PROXY
+fi
+
+#default OS == 'GNU/Linux'
+SERVER_HOME=evawiz/
+EVAWIZ_ROOT=/opt/evawiz/
+if [ $OS == 'Cygwin' ]; then
+    SERVER_HOME=evawizwin/
+    EVAWIZ_ROOT=/opt/evawiz/
+else #defalt OS : 'GNU/Linux'
+    root=false
+    if [ `cat /etc/passwd|grep evawiz|wc -l` == 1 ]; then
+        if [ `id -u` == `id -u evawiz` ]; then
+            root=true
+        fi
+    fi
+    if [ `id -u` == 0 ]; then 
+        root=true
+    fi
+    if [ $root == true ]; then
+        if ! [ -d /opt ];then
+            mkdir /opt
+        fi
+        if ! [ -d /opt ];then
+            echo "ERROR: /opt cannot be created."
+            exit 1
+        fi
+        if ! [ -d /opt/evawiz ];then
+            mkdir /opt/evawiz
+        fi
+        if ! [ -d /opt/evawiz ];then
+            echo "ERROR: /opt/evawiz cannot be created."
+        fi
+        export EVAWIZ_ROOT=/opt/evawiz
+    else
+        export EVAWIZ_ROOT=$HOME/.evawiz
+    fi
+fi
+
+if ! [ -d $EVAWIZ_ROOT ]; then
+  mkdir $EVAWIZ_ROOT 
+fi
+
+
+      
+
+export RSYNC_PASSWORD=evawiz_for_update
+server=evawiz@115.154.191.100:9573
+sdir_nodel(){
+    echo -e "\n\nupdate $1"
+    rsync -avz rsync://$server/$SERVER_HOME/$1/ $EVAWIZ_ROOT/$1/ 
+}
+sdir(){
+    echo -e "\n\nupdate $1"
+    rsync -avz --delete-after rsync://$server/$SERVER_HOME/$1/ $EVAWIZ_ROOT/$1/ 
+}
+sfile(){
+    echo -e "\n\nupdate $1"
+    rsync -avz --delete-after rsync://$server/$SERVER_HOME/$1 $EVAWIZ_ROOT/$2 
+}
+
+
+echo "SERVER_HOME=$SERVER_HOME"
+echo "EVAWIZ_ROOT=$EVAWIZ_ROOT"
+echo "server=$server"
+echo "RSYNC_PASSWORD=$RSYNC_PASSWORD"
+
+echo " try templibs "
+sdir templibs
+if ! [ $? -eq 0 ]; then
+  echo "there are errors when sync from std server"
+  exit 1;
+fi
+
+if [ "x$1" == "xtest" ]; then
+  echo "test finished."
+  exit 0
+fi
+
+if [ $# -gt 0 ]; then
+  if [ `cat $EVAWIZ_ROOT/programs.list |grep $1|wc -l ` == 1 ]; then
+    sdir programs/$1
+    exit 0
+  fi
+  sdir $1
+  exit 0
+fi
+
+
+sfile evawiz.source.local.ori evawiz.source.local.ori
+sfile evawiz.source evawiz.source
+
+sdir bin
+sdir etc
+sdir pymods
+sdir evawizd
+sdir evawiz
+sdir templibs
+sfile programs.list
+
+if [ $OS == 'Cygwin' ]; then
+  ln -sf $EVAWIZ_ROOT/etc/emacs/site-lisp/default.el /usr/share/emacs/site-lisp/default.el
+fi
+if [ $OS == 'GNU/Linux' ]; then
+    if [ $OPERATION == 'mid' ] || [ $OPERATION == 'max' ]; then
+        sdir base
+        sdir emacs
+    fi
+
+    if [ $OPERATION == 'maximum' ]; then 
+        sdir_nodel python
+        sdir gdb
+        sdir gcc
+        sdir openmpi
+        sdir cuda-7.0
+        sdir cuda-8.0
+        sdir_nodel python3
+    fi
+    if [ `id -u` == '0' ]; then
+        ln -sf $EVAWIZ_ROOT/bin/config-eva /usr/bin/config-eva
+        ln -sf $EVAWIZ_ROOT/bin/update-eva /usr/bin/update-eva
+        ln -sf $EVAWIZ_ROOT/bin/eva /usr/bin/eva
+        ln -sf $EVAWIZ_ROOT/bin/update-eva-no-output /etc/cron.hourly/update-eva
+    fi
+
+fi
+
+if ! [ -f $EVAWIZ_ROOT/evawiz.source.local ]; then
+    mv $EVAWIZ_ROOT/evawiz.source.local.ori $EVAWIZ_ROOT/evawiz.source.local
+fi
+
+sed -i "s#ROOT=\/opt\/evawiz#ROOT=$EVAWIZ_ROOT#"  $EVAWIZ_ROOT/evawiz.source
+$EVAWIZ_ROOT/bin/config-eva
+
+log_file=$EVAWIZ_ROOT/update.log
+echo "update-eva finished at `date`">$log_file
+

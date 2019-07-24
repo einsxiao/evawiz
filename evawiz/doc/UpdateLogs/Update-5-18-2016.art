@@ -1,0 +1,67 @@
+Updates of 5-18-2016
+
+\section{1.  所有的EvaObj改名为Object}
+  头文件位置/opt/evawiz/evawiz/include/eva_object.h
+  Object 的用法改变
+  改变后的一个原则,声明的时候不初始化.
+  既用 Object obj; obj.Set... 的方式来做初始化,取代原来的EvaObj obj(...);  例子:
+     EvaObj obj(SymbolT,"x");  //声明符号型obj,内容为符号x
+            被取代为   Object obj; obj.SetSymbol("x");
+     EvaObj Pi(3.14); //声明数字类型obj,内容为数字3.14
+            被取代为   Obect obj;  obj.SetNumber(3.14);
+     注意在C++程序中,要从Kernel取上例中x的值时,可以使用Eva->Evaluate(obj);
+     然后判断obj的值,如果  obj.SymbolQ("x") == true 则表示x没有值,否则有值
+        
+  新的初始化函数有
+  \code{c}
+     void  Object::SetNull();
+     void  Object::SetSymbol(u_int);
+     void  Object::SetSymbol(char*);
+     void  Object::SetNumber(double);
+     void  Object::SetNumber(evawiz::complex);
+     void  Object::SetString(char*);
+  \end
+     等.更详细的内容请参见头文件定义.
+
+  Object 4种类型  Number String  Symbol  List
+     其中List是一个可以包含其他三种及自身类型,任意大小的列表.
+     判断Object的类型的成员函数有
+  \code{c}
+     bool Object::NumberQ();
+     bool Object::StringQ();
+     bool Object::StringQ(char*);
+     bool Object::SymbolQ();
+     bool Object::SymbolQ(char*);
+     bool Object::ListQ();
+     bool Object::ListQ(char*);
+   \end
+
+
+  bool evawiz::FileExist(string)
+        变更为 bool evawiz::FileExistQ(string)
+
+  增加调试函数 dout, dprintf(...)
+     dout用法同cout,但是在release版本代码中不会作用
+
+     dprintf(...)用法同printf(...),同时在行首打印 文件和当前行数信息, 同样在release版本中也不作用.
+
+\section{2. Eva语言(ESL)中增加面向对象和修改部分组件特性}
+   增加了Dot运算符.可以执行取成员变量等操作
+   Class
+    
+   增加了字典类Dict
+      d = Dict["a":"b","c":f,3:f[x],g:"cdef"];
+      d["a"]  结果为"b"
+
+   List列表可以直接通过函数调用形式取分量
+      l = {1,2,3,4};
+      l[1] 结果为 1
+
+   Matrix操作变更为类对象Matrix[...]操作
+      a = Matrix[];
+      a.Set[ {{1,2,3},{4,5,6}} ];
+      a.ReadFile['a.txt'];
+      a.DumpFile['a.txt'];
+      a.DeviceToHost[];
+      a.HostToDevice[];
+      a.ToList[]

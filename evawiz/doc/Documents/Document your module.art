@@ -1,0 +1,52 @@
+\title{Prepare Documents for your module}
+
+    If you have created you module, saying 'XXX', then you can create Documents for your module easily by adding content to file named XXX.art in ~/evawiz/XXX/doc/. By following some simple rules, your newly created document could be professinal and abundant. 
+    A '\\command{...}' structure presented in the file will give out a formated output. If you want to output a \\, just type '\\\\'.
+
+\section{Formart control}
+
+\item{use \\section\{...\} to create a section: }
+\section{...}
+\item{use \\title\{...\}, \\title2\{...\} and so on to create a title. Notice that the first \\title\{...\} will create the page title.}
+\title{...}
+\title2{...}
+
+\item{use \\italic\{...\} \\bold\{...\} \\underline\{...\} \\strike\{...\} \\red\{...\} \\blue\{...\} \\green\{...\} to create text: }
+\italic{test text}
+\bold{test text}
+\underline{test text}
+\strike{test text}
+\red{test text}
+\blue{test text}
+\green{test text}
+
+Latex symbols and formulars can be dirrectly used.
+you can type \red{\\alpha} for \alpha or \red{\\beta} for \beta
+
+\$\$\\alpha+\\beta_a^b\$\$ is for single line equation
+              $$\alpha+\beta_a^b$$
+
+\$\\alpha+\\beta_a^b\$ is for inline-euqation $\alpha+\beta_a^b$
+
+and use \\code{language_type}...\\end to present a piece of code. language type could be:
+\item{c/c++: c/c++/cudac source file }
+\item{sh: shell script}
+\item{js: javascript }
+\item{ev: for evawiz script}
+for example
+\code{c}
+for (int i=0;i<9;i++)
+  printf("%d\n",i);
+\end
+
+
+You can also showing pictures or providing download by putting related resources in the doc/ directory. 
+\item{ use \\download\{display_text,real_file_name\} to provide file downloading.}
+download by click \download{test,test.txt} 
+
+\item{ use \\page\{display_text,real_file_name\} to provide link to anoather document page like current one.}
+link to page \page{test,test.txt}
+
+\item{ use \\image\{image_file_name\} to insert a page at current position. }
+\image{running.gif}
+

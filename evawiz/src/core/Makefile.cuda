@@ -1,0 +1,127 @@
+#compile setting
+NVCC = nvcc
+PPCC = g++
+DIRS = 
+LIBS = -lcurand -lmpi
+##################################################################################
+DFLAGS :=  -std=c++11 -g3 -D DEBUG -Wall -Wextra -Wno-unused-parameter
+DNVFLAGS := -std=c++11 -g --compiler-options -g3 --compiler-options -Wall --compiler-options -Wextra -G -D DEBUG --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused-parameter -Wno-deprecated-gpu-targets
+FLAGS := -std=c++11 -O2 
+NVFLAGS := -std=c++11 -O2 -Wno-deprecated-gpu-targets
+
+##################################################################################
+
+BUILDDIRS := $(DIRS:%=build-%)
+INSTALLDIRS := $(DIRS:%=install-%)
+CLEANDIRS := $(DIRS:%=clean-%)
+HEADERS := $(wildcard *.h) evawiz.h 
+
+SRCS := $(wildcard *.cpp) 
+CUSRCS := $(wildcard *.cu) 
+
+MSRCS := $(wildcard *Module.cpp) 
+MCUSRCS := $(wildcard *Module.cu) 
+
+DOBJECTS := $(patsubst %.cpp, build/debug/%.tcpp.o, $(SRCS))
+DCUOBJECTS := $(patsubst %.cu, build/debug/%.tcu.o, $(CUSRCS))
+DALLOBJECTS :=  $(DOBJECTS) $(DCUOBJECTS)
+
+DMOBJECTS := $(patsubst %.cpp, build/debug/%.tcpp.o, $(MSRCS))
+DMCUOBJECTS := $(patsubst %.cu, build/debug/%.tcu.o, $(MCUSRCS))
+DMALLOBJECTS :=  $(DMOBJECTS) $(DMCUOBJECTS)
+DMSHARELIB := $(patsubst %.cu, %-dev.so, $(MCUSRCS)) $(patsubst %.cpp, %-dev.so, $(MSRCS)) 
+
+OBJECTS := $(patsubst %.cpp, build/release/%.tcpp.o, $(SRCS))
+CUOBJECTS := $(patsubst %.cu, build/release/%.tcu.o, $(CUSRCS))
+ALLOBJECTS := $(OBJECTS) $(CUOBJECTS)
+
+MOBJECTS := $(patsubst %.cpp, build/release/%.tcpp.o, $(MSRCS))
+MCUOBJECTS := $(patsubst %.cu, build/release/%.tcu.o, $(MCUSRCS))
+MALLOBJECTS := $(MOBJECTS) $(MCUOBJECTS)
+MSHARELIB := $(patsubst %.cu, %.so, $(MCUSRCS)) $(patsubst %.cpp, %.so, $(MSRCS))
+
+INCLUDE = `eva-path tcpp`
+CUINCLUDE = `eva-path tcu`
+MAKE = make
+OUT=libeva.so
+DOUT=libeva-dev.so
+
+
+debug: prepare-all debug-prepare DALL  post-work
+debug-prepare:
+	@echo "Debug Version"
+
+release: prepare-all prepare ALL post-work
+prepare:
+	@echo "Release Version"
+	rmcp *.h ../../include/
+
+prepare-all:
+	$(shell if [ -f build ]; then rm build; mkdir build; elif ! [ -d build ]; then mkdir build; fi; )
+	$(shell if [ -f build/debug ]; then rm build/debug; mkdir build/debug; elif ! [ -d build/debug ]; then mkdir build/debug; fi; )
+	$(shell if [ -f build/release ]; then rm build/release; mkdir build/release; elif ! [ -d build/release ]; then mkdir build/release; fi; )
+
+post-work:
+	rmcp *.so ../../lib
+
+
+########################################################################################################
+DALL: debugsharelib $(DMSHARELIB)
+
+debugsharelib: $(DALLOBJECTS)
+	$(NVCC) $(DNVFLAGS) -shared -o $(DOUT) $(DALLOBJECTS) $(CUINCLUDE)  $(LIBS)
+
+%Module-dev.so: build/debug/%Module.tcpp.o
+	$(NVCC) $(DNVFLAGS) -o lib$@ -shared $< $(CUINCLUDE) 
+
+%Module-dev.so: build/debug/%Module.tcu.o
+	$(NVCC) $(DNVFLAGS) -o lib$@ -shared $< $(CUINCLUDE) 
+
+build/debug/%.tcpp.o: %.cpp $(HEADERS)
+	$(NVCC) $(DNVFLAGS) -c -Xcompiler -fPIC $< -o $@ -I. $(CUINCLUDE)
+
+build/debug/%.tcu.o: %.cu $(HEADERS)
+	$(NVCC) $(DNVFLAGS) -c -Xcompiler -fPIC $< -o $@ -I. $(CUINCLUDE)
+
+#########################################################################################################
+ALL: sharelib $(MSHARELIB)
+
+sharelib: $(ALLOBJECTS)
+	$(NVCC) $(NVFLAGS) -shared -o $(OUT) $(ALLOBJECTS) $(CUINCLUDE)  $(LIBS)
+
+%Module.so: build/release/%Module.tcpp.o
+	$(NVCC) $(NVFLAGS) -o lib$@ -shared $< $(CUINCLUDE) 
+
+%Module.so: build/release/%Module.tcu.o
+	$(NVCC) $(NVFLAGS) -o lib$@ -shared $< $(CUINCLUDE) 
+
+build/release/%.tcpp.o: %.cpp $(HEADERS) #evawiz.h.gch
+	$(NVCC) $(NVFLAGS) -c -Xcompiler -fPIC $< -o $@ -I. $(CUINCLUDE)
+
+build/release/%.tcu.o: %.cu $(HEADERS) #evawiz.h.gch
+	$(NVCC) $(NVFLAGS) -c -Xcompiler -fPIC $< -o $@ -I. $(CUINCLUDE)
+#########################################################################################################
+
+
+evawiz.h.gch: evawiz.h
+	$(PPCC) $(FLAGS) -x c++-header $> $^
+	@cp -f evawiz.h evawiz.hcu
+
+evawiz.hcu.gch: evawiz.h
+	$(NVCC) $(NVFLAGS) -x c++-header $> $^
+
+$(BUILDDIRS):
+	$(MAKE) -C $(@:build-%=%)
+
+clean: $(CLEANDIRS)
+	@rm *.so
+	@rm -rf build
+
+$(CLEANDIRS):
+	$(MAKE) -C $(@:clean-%=%) clean
+
+$(INSTALLDIRS):
+	$(MAKE) -C $(@:install-%=%) install
+
+
+

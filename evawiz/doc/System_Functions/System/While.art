@@ -1,0 +1,2 @@
+While[condition, expr]
+  对条件condition求值,当结果为False时结束表达式求值,返回Null;若condition求值结果为True,则对expr求值,然后再对condition求值,重复此过程直到condition求值结果为假.

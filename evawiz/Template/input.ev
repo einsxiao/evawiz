@@ -1,0 +1,37 @@
+#!/usr/bin/env evawiz
+####################################################
+# This is an input test script for current module  #
+####################################################
+GetModule['Template']
+TestFunction[]
+Exit
+
+#run code on cpu
+SetRunningMode['Cpu']
+Print["Program is trying to run in ",GetRunningMode[]," Mode."]
+steps = 1000;
+SetEvawizCpuKernelThreadsNumber[1]
+Timing[TestFunction[]]
+Print['Finished']
+
+SetEvawizCpuKernelThreadsNumber[2]
+Timing[TestFunction[]]
+Print['Finished']
+
+
+SetEvawizCpuKernelThreadsNumber[4]
+Timing[TestFunction[]]
+Print['Finished']
+
+SetEvawizCpuKernelThreadsNumber[8]
+Timing[TestFunction[]]
+Print['Finished']
+
+# run same code on gpu
+SetRunningMode['Gpu']
+Print["Program is trying to run in ",GetRunningMode[]," Mode."]
+SetCudaThreadsNumberPerBlock[128]
+Timing[TestFunction[]]
+Print['Finished']
+
+

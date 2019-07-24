@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+        echo "usage: trash <files...>" >&2
+        exit 2;
+fi
+
+if [ -f ~/.trash ];then
+	rm ~/.trash
+fi
+if [ ! -d ~/.trash ];then
+	mkdir ~/.trash
+fi
+
+for file in "$@"; do
+	filename=${file//\//__}.`date +%y-%m-%d_%H:%M:%S`
+	mv $file ~/.trash/$filename
+done

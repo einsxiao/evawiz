@@ -1,0 +1,61 @@
+\title{Evamcs + Evil plugin}
+
+emacs+evil 
+\section{text editing}
+Disable the evil plugin by add "(evil-mode nil)" to ~/.emacs. The 'evil' plugin enble vim habits in emacs. It's really awesome.
+\section{Shortcuts}
+Esc             Back to command mode
+i               To insert at current position
+h               Move left
+j               Move downward
+k               Move upward
+l               Move right
+  k
+h   l
+  j
+v               Start visual mode then move cursor to select a piece of text then use y d to yield(copy) or delete selected text
+dw 2dw dd 2dd)  Delete word/2 words/one line/2 lines at current position
+yw yy           Yield one word/one line 
+P               Paste the yield text at current position
+0               Move to the head of the line
+\               Move to the end of the line
+a               Insert after current position
+x               Delete character at current position
+u               Undo previous operations
+Shift-j         Connecting current line with next line
+/               Searching string 
+:               Ready to enter vim command. 
+	%s/abc/cba/g    replacement abc with cba in whole text
+	sp              divide current window into 2 horizontally
+	vsp             divide current window into 2 vertically
+
+\title2{window and buffer operations}
+Ctrl-x 2        Open a window below current window
+Ctrl-x 3        Open a window right to current window
+Ctrl-x Ctrl-f   Open a file and load the content to currentn window
+Alt+h/j/k/l     Move to left/down/up/right window
+F3              Load most recent buffer      
+Ctrl-F3         View the buffer list and choose one buffer to load
+Alt-[           Restore to previous windows layout 
+Alt-]           Restore to next windows layout 
+Alt-x           Ready to run emacs command
+
+\title2{Use gdb to debug your program}
+F9              Compile based on Makefile rules
+Alt+e           Based on make results, jump to next error
+Alt+shift+e     Based on make results, jump to previous error
+After the project been compiled and linked,
+F5              Start gdb debugging
+Ctrl+F5         Finish gdb debugging
+Within gdb debugging environment
+    in gdb window use command
+       file [exe]      to load the executive program
+       print [var]     print [var] value
+Alt+b           Set/unset break-point at current position
+Alt+s           Start/restart debugging program
+Alt+i           Run a single step, entering the sub-function
+Alt+n           Run a single step, not entering the sub-function
+Alt+r           Continue to run till end or next break-point
+Alt+p           Print variable at current positon
+Alt+Ctrl+p      Print inference of variable at current position
+

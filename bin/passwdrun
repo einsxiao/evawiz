@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+if { $argc < 2 } {
+puts "Usage: erun password cmd_to_execute"
+exit
+}
+set PWD  [lindex $argv 0]
+set CMD  [lindex $argv 1]
+
+set timeout 5
+spawn bash -c $CMD
+expect "password" 
+sleep 1
+send "$PWD\r" 
+interact

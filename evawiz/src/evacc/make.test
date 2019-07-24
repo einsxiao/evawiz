@@ -1,0 +1,3 @@
+all:
+	evacc -G --compiler-options -g3 -c -std=c++11 --compiler-options -fopenmp test.cu `eva-path evacc` 
+	evacc -o out test.cu.o --compiler-options -fopenmp -leva-dev `eva-path evacc` 

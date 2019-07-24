@@ -1,0 +1,8 @@
+#!/usr/bin/env evawiz
+####################################################
+# This is an input test script for current module  #
+####################################################
+GetModule['Template']
+#SetRunningMode["Cpu"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+TestFunction[]

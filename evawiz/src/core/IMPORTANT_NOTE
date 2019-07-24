@@ -1,0 +1,1 @@
+if want cuda to be supported. then the "MatrixModule.src" must set to ".cu" format. for the installation of Template Matrix_T will rely on the first installation. If no cuda source present here, then no cuda version Matrix_T will be available in other module loaded.

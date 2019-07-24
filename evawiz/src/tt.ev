@@ -1,0 +1,11 @@
+#!/opt/evawiz/bin/evawiz
+GetEvawizCpuKernelThreadsNumber[]
+SetEvawizCpuKernelThreadsNumber[8]
+GetEvawizCpuKernelThreadsNumber[]
+Exit
+b=Matrix['b']
+b.Set[{1,2,3,4}]
+b
+a=Matrix[{1,2,3,4}]
+a
+a.ToList[]

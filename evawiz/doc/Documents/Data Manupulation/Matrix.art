@@ -1,0 +1,66 @@
+Matrix
+
+Matrix是Matheins系统中为了适应数组计算及相应的cuda编程而封装的类.
+它能自动完成GPU设备端与主机端内存空间申请,数据拷贝.自动并行算术运算等操作.
+在M-Language中,Matrix及Matrix族函数,可以直接操作Matrix模块中的数据,并执行各种运算,写入数据到文件,从文件中读出数据到Kernel中.
+
+\section{ Matrix类的基本结构}
+
+Matrix中的数据定义如下:
+\code{c}
+template<class type>
+class Matrix{
+  public:
+    type *Data;   // pointer to Data on Host
+    type *DataDevice; //pointer to Data on Device
+  public:
+    Matrix(int*dim,int dotaposition);
+    Matrix(int n,...);
+    int Init(int*dim,int dotaposition); 
+    int Init(int n,...);
+    int HostToDevice(); //将Host中数据复制到到Device中.
+    int DeviceToHost(); //将Device中数据复制到Host中.
+
+    type &Part(int p);
+    type &Part(int *p);
+    type &PPart(int *p);
+
+    long N();      
+    long Size();   
+    long Length(); 
+
+    int ReadFile(string filename);
+    int DumpFile(string filename);
+    int BinaryReadFile(string filename);
+    int BinaryDumpFile(string filename);
+}
+\end
+
+在Cuda程序中使用时,Matrix是一个模板类.通常的两种初始化方式为:
+\code{c}
+//1
+Matrix<Real> a(2,3,3,MatrixHostDevice);
+//2
+int dim[3]={2,3,3}
+Matrix<Real> b(dim,MatrixHostDevice);
+\end
+
+同时,Matrix还重载了适用的算术运算
+\code{c}
+Matrix<Real> a(2,3,3,MatrixHostDevice),b(2,3,3,MatrixHostDevice),c(2,3,3,MatrixHostDevice);
+MatrixSetPosition(MatrixDevice); //先设定算术运算执行的位置,主机或者设备)
+a=1.0f; b=a;
+a+=2.f; a+=b;
+a-=1.f; a-=b;
+a*=2.f; a*=b;
+a/=2.f; a/=b;
+a^=3;
+a==b; // to test whether a and b are in the same dimension and type
+a.DeviceToHost();
+cout<<a;
+\end
+
+\section{数据存储位置}
+初始化Matrix时,常量MatrixNone,MatrixHost,MatrixDevice,MatrixHostDevice指定了Matrix中数据空间的申请方式.
+
+

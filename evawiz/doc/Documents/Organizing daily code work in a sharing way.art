@@ -1,0 +1,60 @@
+\title{Basic Unit to organize our work -- Evawiz Module}
+Module is a basic working unit in evawiz system for organizing and sharing code or data.
+
+\section{To create a module}
+You can directly use command 'eva new XXX' to create a module with name 'XXX'.
+\code{shell}
+$ eva new module
+\end
+Then all basic structure (code template, Makefile and so on) for developing and sharing is ready for use.
+A module does not only mean a way to write c++ code which can be sharing and reusing, but also a unit to organize and resuse your matlab, python, mathematica or shell code rather easy over linux hosts.
+
+\section{Module structure for c++ code}
+
+interface class declared in 'xxxModule.h'
+\code{c++}
+#ifndef xxxxModule_Evawiz_H
+#define xxxxModule_Evawiz_H
+namespace evawiz{
+    class xxxxModule:public Module{
+        DeclareModule(xxxx); //restricted declaration for constructing and deconstructing. Do not change this.
+      public:
+        DeclareFunction(TestFunction); //interface function type to evawiz kernel
+    };
+};
+#endif
+\end
+
+definition or interface class 
+\code{c++}
+#include<evawiz> //neccessary
+#include"xxxxModule.h" 
+using namespace std;
+using namespace evawiz;
+/****************************/
+__DEBUG_MAIN__("input.ev");
+ModuleInitialize // play the role of construction function
+{
+    dout<<"Module "<<__ModuleNameStr(ModuleName)<<" is constructing."<<endl;
+
+}
+
+ModuleFinalize // play the role of deconstruction function
+{
+    dout<<"Module "<<__ModuleNameStr(ModuleName)<<" is deconstructing."<<endl;
+
+}
+
+/****************************/
+DefineFunction(TestFunction,"A test Function can be called both from c/c++/cudac(int TestFunction_Eva(Object&,Evaluation*))"
+"and eva kernel (TestFunction[...])."){
+    // defination of the interface function. Input Argument is stored in 'Argv' of type 'Object'.
+    cout<< "Input Argument is '"<< Argv <<"'"<<endl;
+    cout<<"Module xxxx is created from the standard template."<<endl;
+    // return values should also be the processed value of Argv. and then end the function with 'ReturnNormal;'
+    // You may also use ReturnString ReturnNumber ReturnSymbol to return simple values. Or use ReturnNull to return a Null Value.
+    ReturnString("result returned");
+}
+\end
+
+

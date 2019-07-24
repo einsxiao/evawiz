@@ -1,0 +1,6 @@
+#!/usr/bin/env evawiz
+GetModule["Guis"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+Runmod[]
+a=3
+b=9;

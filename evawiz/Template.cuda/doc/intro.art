@@ -1,0 +1,57 @@
+\title{Template Introduction}
+
+\section{Module is a basic working and management unit}
+\title1{I.Unit to organize C++ code.}
+
+Class named TemplateModule is a basic unit where interface to evawiz kernel located. Decalration and defination of interface to evawiz is required to be this module. There are some minor change in declaring and defining the module. All nessassary code is created when register the module to the system with command "eva new Template". Changing on those key parts may result errors.
+Within "Evawiz Kernel" one can call functions defined in the following way:
+  declared by : DeclareFunction(funcName)
+  defined by : DefineFunction(funcName,description_string){ ... }
+  
+  In Interface Functions, all input arguments are stored in Argv of type Object. Object definition is stored in "\$EVAWIZ_ROOT/evawiz/include/eva_object.h". Here are come method to draw the info out of Argv:
+a)	Argv.Size() gives out the size of input arguments
+b)	Argv[i] is the ith input argument.
+c)	Type of the input can be check by:
+\code{c++}
+CheckShouldBeNumber(i);   //The ith argument should be a Number. Otherwize throw out an error.
+CheckShouldBeString(i);   //The ith argument should be a String. Otherwize throw out an error.
+CheckShouldBeSymbol(i);   //The ith argument should be a Symbol. Otherwize throw out an error.
+CheckShouldEqual(n);      //There should be n input arguments. Otherwize throw out an error.
+CheckShouldBeWithin(n1,n2);  //There should be at least n1 arguments and at most n2 arguments. Otherwize throw out an error.
+...
+\end
+Detail definition is in "\$EVAWIZ_ROOT/evawiz/include/eva_macro.h"
+
+\title1{Return Value of Interface Function}
+The return value should be stored in Argv. And an integer code should be returned.
+\code{c++}
+Argv.SetNumber(...);
+Argv.SetString(...);
+Argv.SetSymbol(...);
+Argv.SetList(...);
+Argv.SetNull(...);
+\end
+
+There are some macros to simplify the returning process.
+\code{c++}
+ReturnNull;                // return a Null. Same as Argv.SetNull(); return 0.
+ReturnNormal;              // return Argv as it is.
+ReturnNumber(num_value);   // return a Number.
+ReturnString(str_value);   // return a String
+Return(Object &var);       // Set Argv to var and return;
+...
+\end
+Detail definition is in "\$EVAWIZ_ROOT/evawiz/include/eva_macro.h"
+
+\title1{Segregate input to Evawiz Kernel}
+One can get values of variable which are already in kernel.
+\code{c++}
+InitVariable(var,default_value);                    //get the value of var with the same name "var". If the value do not exist, var will take the default_value.
+InitVariablePrint(var,default_value);               //same as InitVariable and print the result value as well.
+InitNameVariable("varNmae",var,default_value);      //get the value of var with the name "varName". If the value do not exist, var will take the default_value.
+InitNameVariablePrint("varNmae",var,default_value); //same as InitNameVariable and print the result value as well.
+\end
+Detial definition is in "\$EVAWIZ_ROOT/evawiz/include/eva_macro.h"
+
+\section{Unit to manage Matlab and Python code}
+Once the module is Imported by evawiz code the module dir is added to matlab and python searching path.

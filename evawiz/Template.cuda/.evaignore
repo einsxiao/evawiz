@@ -1,0 +1,23 @@
+#settings for ignore list for eva push and upload operation
+
+#ignore *.o, exe, and so on
+exe
+*.o
+*.tmp
+*.log
+*.save
+*.dat
+.*
+#ignore directory .eva/
+/.*/
+/build/
+
+
+#files that will not ignored
+!.evaignore
+!.evarunfile
+!*.so
+!*~
+
+#other normal tmp files
+.nfs*

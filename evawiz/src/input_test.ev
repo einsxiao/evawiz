@@ -1,0 +1,1286 @@
+#!/opt/evawiz/evawiz/src/evawiz-dev
+(*why this not be
+If[True,Print['true'],Print['false'] ]
+If[False,Print['true'],Print['false'] ]
+Do[ Print[i], {i,10}]
+Table[ Table[i+j,{i,10}],{j,10}]
+Do[ Print[i], {i,0,1,0.01}]
+Table[ i, {i,0,99,0.11}]
+Table[ i, {i,0,99,-0.11}]
+Table[ i, {i,99,0,-0.11}]
+Do[ Print[i," ",], {i,99,0,-0.11}]
+Timing[ sum=0; i=0; While[i<=10,{sum+=i,i+=1}];sum]
+a={1,2}
+a[[1]]
+Table[i*500000000*10^10,{i,10}]
+300000000*10^10
+*)
+(*
+N=10000000
+Timing[ sum=0; Foreach[i,Range[N],sum+=i];sum]
+Timing[ sum=0; Foreach[i,Range[N],sum+=i];sum]
+Timing[ sum=0; Foreach[i,Range[N],sum+=i];sum]
+Timing[ sum=0; Foreach[i,Range[N],sum+=i];sum]
+Timing[ sum={0,0}; i=0; While[i<=N,{sum[[1]]+=i,i+=1}];sum]
+Timing[ sum=0; Do[sum+=i,{i,N}];sum]
+Timing[ sum=0; For[i=0,i<=N,i+=1,sum+=i];sum]
+Timing[ sum=0; i=0; While[i<=N,sum+=i;i+=1];sum]
+Timing[ sum=0; i=0; While[i<=N,{sum+=i,i+=1}];sum]
+Exit
+*)
+(*
+Table[i,{i,10}]
+Table[2*i,{i,10}]
+Exit
+*)
+(*
+a//f
+f@a
+a={1,2,3}
+a[[1]]
+a[[{1,3}]]
+a
+a[[2]]=9
+a[[{1,3}]]={4,5}
+a[[1::2::1]]
+For[i=1,i<10,i++, Print[i] ]
+i=10
+While[i>0,Print[i];i--]
+If[i>0,Print[True],Print[False]]
+Exit
+*)
+(*
+Print['start']
+x
+x=1
+x=x+2
+x
+x++
+x
+a=5.8
+b=2.2
+a+
+b
+a
+b
+a+b
+a-b
+a*b
+a/b
+a^b
+a+b+c+d
+(a+b)*c+d
+Exit
+*)
+(*
+MatchQ[5,5]
+MatchQ[5,_]
+MatchQ[5,6]
+MatchQ[5,x_]
+MatchQ[5,x_String]
+MatchQ[5,x_Number]
+Exit
+*)
+(*
+aa
+MatchQ[ab,x_Symbol]
+MatchQ['ab',x_Number]
+MatchQ['ab',x_String]
+MatchQ[{1,2},x_Symbol]
+MatchQ[{1,2},x_List]
+MatchQ[c,c]
+MatchQ[ {a,b,c},{a,x_,y_} ]
+MatchQ[ {a,b,c},{a,x_,x_} ]
+MatchQ[ {a,b,c},{a,x_} ]
+MatchQ[ {a,b,c},{a,x__} ]
+MatchQ[ {a,b,c},{a,x___} ]
+MatchQ[ {a,bb,cc},{a,x___Symbol} ]
+MatchQ[ {a,bb,cc},{a,x___,y_} ]
+MatchQ[ {a,bb,cc},{a,x___Symbol,y_} ]
+Exit
+*)
+(*
+MatchQ[1,1]
+MatchQ[a,_]
+MatchQ[aa,_]
+MatchQ[aa,_Symbol]
+MatchQ[aa,x_Symbol]
+MatchQ[ab,x_Symbol]
+MatchQ[ {a,bb,cc},{a,x___} ]
+MatchQ[ {a,bb,cc},{a,x___,y_} ]
+MatchQ[ {a,bb,cc},{a,x___,y_,z_} ]
+MatchQ[ {a,bb,cc},{a,x___,y_,y_} ]
+MatchQ[ {a,bb,cc},{a,x___,y_,a_} ]
+MatchQ[ {a,bb,cc,cc},{a,x___,y_,y_} ]
+MatchQ[ {bb,cc,cc},{x___,y_,y_} ]
+MatchQ[ {bb,cc,cc,aa},{x___,y_,y_,x___} ]
+MatchQ[ {bb,cc,cc,bb},{x___,y_,y_,x___} ]
+MatchQ[ {bb,{a,b},cc,cc,bb},{x___,{a,b},y_,y_,x___} ]
+MatchQ[ a,{a,b}]
+MatchQ[ {a,b},b]
+Exit
+*)
+(*
+HoldPattern[a+b+c+d]
+HoldPattern[a+b+c+d]//FullForm
+HoldPattern[a+b*c*b/d/e+c+d]//FullForm
+a+b*c*b/d/e+c+d
+Times[,]//FullForm
+Null*Null
+Exit
+*)
+
+(*
+f[a_]:=a+1
+f[2]
+g[a_]:=a
+g[3]
+a/.a->3
+{a,b}/.{a->3,b->4}
+Replace[{a,b},{a->3,b->4}]
+ReplaceAll[{a,b},{a->3,b->4}]
+Exit
+*)
+
+(*
+Foreach[ {i,j},{{1,2},{3,4},{5,6}},Print[i+j]]
+Do[Print[i],{i,3}]
+i
+Foreach[ {i,j},{{1,2},{3,4},{5,6}},Print[i,",",j]]
+D[expr_,var_]:=ReplaceAll[ expr,{x_^n_:>n*x^(n-1)} ]
+D[x^2,x]
+Exit
+*)
+
+(*
+sum=0
+Foreach[i,Table[i,{i,600000}],sum+=i];sum
+Table[i,{i,10}]
+Foreach[i,Table[i,{i,64541}],sum+=i];sum
+Foreach[i,Table[i,{i,64541}],sum+=i];sum
+Foreach[i,Table[i,{i,64545}],sum+=i];sum
+Foreach[i,Table[i,{i,64546}],sum+=i];sum
+Foreach[i,Table[i,{i,64547}],sum+=i];sum
+Foreach[i,Table[i,{i,64548}],sum+=i];sum
+Exit
+*)
+
+(*
+x/.a_->a^2
+x^2/.{x_^n_Number:>n*x^(n-1)}
+a+b+a
+f[x_]:=x^2
+f[3]
+Get['test.ev']
+Times[,]//FullForm
+Null*Null
+Print[]
+Test[{a=(3,4),b=(4,5)}, a/b,(32/41,1/41)]
+Test[{},1/a,a^(-1)]
+Exit
+*)
+(*
+If[e==f,Print['ok'],Print['ef']]
+Exit
+*)
+
+
+(*
+Get['test.ev']
+Import['test.ev']
+Exit
+*)
+
+(*
+a=5.8
+b=2.2
+f[x_]:=x^2
+g[x_]:=x^3
+h[x_] := x*2
+h[x_,y_] := x*2+y^2
+h[x_,a,y_] := x*2+y^2
+h[x_,z_,y_] := x*2+y^2+z^3
+h[x_] :=1
+h[x_,y]:=3
+h[f[x_],g[y_] ]:=11
+h[f[x_,z_],g[y_] ]:=12
+
+h[3]
+h[3,4]
+h[3,a,4]
+h[3,HoldPattern[a],4]
+h[h[3],4]
+Exit
+*)
+
+(*
+Directory[]
+ParentDirectory[]
+SetToParentDirectory[]
+SetToParentDirectory[]
+SetToParentDirectory[]
+Directory[]
+SetToParentDirectory[]
+Directory[]
+Exit
+*)
+
+(*
+a+2a+3a
+a+a
+3a+2a+a
+2a+a b
+2a+b
+2a+b+a b
+b+3+4+a+b
+b c + a c 
+a b + b c
+b c + a c 
+a b + a c 
+a b + b c + a c 
+a b  + a c  + b c
+a b + b c + a c + a b
+c a + b c + a c
+2*a c +a b
+a b + a c  + c a #+a + a b c + a b
+2a+a b + a c + 2 b + b c + b + c a #+a + a b c + a b
+2a+a b + a c + 2 b + b c + b + c a +a + a b c + a b
+Exit
+*)
+
+(*
+h[3,4]
+h[ f[2],g[3] ]
+h[ f[2,3],g[3] ]
+
+f[x_]:=x^3
+g[x_]:=x^4
+h[x_]:=x^5
+f[1,2]
+f[3]
+Print[]
+f[g[3],h[3]]
+f[4]
+g[4]
+h[4]
+a=b=3
+f[a_]:=a^3
+a
+b
+f[3]
+Exit
+*)
+(*
+MatchQ[a+b,x_+y_]
+UnifiedMatchQ[a+b,$_1_+$_2_]
+UnifiedMatchQ[a+b+c,HoldPattern[$_1_+$_2__]]
+UnifiedMatchQ[a,$_1_]
+UnifiedMatchQ[a+b+c,HoldPattern[$_1_+$_2__]]
+Print[]
+UnifiedMatchQ[a+b,$_2_+$_1_]
+UnifiedMatchQ[a+b,$_1_+$_2_]
+UnifiedMatchQ[a+b,$_1_+$_1_]
+UnifiedMatchQ[a*a,$_1_*$_2_]
+Exit
+*)
+
+(*
+f[]
+$_+2&{1,2,3}
+$_+2&[1,2,3]//FullForm
+*)
+
+
+
+(*
+f[a_]:=a^2
+
+[1,2,3]
+f[x_]:=x^2
+f[x_+y_]:=x^2+y^2
+f[x_*y_]:=x^2*y^2
+
+g[x_]:=x^2
+g[x_+y_]:=x^2+y^2
+g[x_*y_]:=x^2*y^2
+
+f[a]
+f[c+d]
+f[c*d]
+f[c+d+e]
+Exit
+*)
+
+(*
+d[x_,x_]:=1
+d[x_^n_,x_]:=n*x^(n-1)
+d[a_*x_^n_,x_]:=a*n*x^(n-1)
+
+Print[]
+d[x,x]
+d[x^2,x]
+d[x^5,x]
+d[2x^2,x]
+d[2x^5,x]
+Print[]
+UnifyRule[ x_:>x+1 ]
+Exit
+*)
+(*
+a=(3,5)
+b=(11,7)
+a+b
+a-b
+a*b
+a/b
+a=(2,2)
+b=(1,1)
+a/b
+Exit
+*)
+
+(*
+GetModule['Template']
+Intro[]
+f[a_]:=a^5
+f[3]
+3*3
+Exit
+*)
+
+(*
+Matrix['a'] = Table[i+j,{i,1,4},{j,1,5},{k,1,3}]
+<<Matrix['a']
+Matrix['b'] = Table[i+j,{i,3},{j,5}]
+<<Matrix['b']
+Dimensions[tb,5]
+Matrix['a'] = Matrix['b']
+<<Matrix['b']
+MatPutMatrix['a']
+MatPutMatrix['b']
+MatGetValue['a']
+MatGetValue['b']
+Matlab>>> a=a+1;b=b*10; <<<
+MatGetMatrix['a']
+MatGetMatrix['b']
+<<Matrix['a']
+<<Matrix['b']
+MatGetMatrix['c']
+<<Matrix['c']
+Matlab>>>
+plot(a)
+plot(b)
+<<<
+Sleep[10];
+Exit
+*)
+(*
+x=20;
+While[x>0,
+      Print[x];
+      x--;
+     ]
+Exit
+*)
+
+
+(*
+a[[b]]
+a={1,2,3,4,5,6}
+a[[-1:-3]]
+a[[-1:-3:-1]]
+a[[-1:-3:1]]
+a[[1:4:-2]]
+a[[1:4:2]]
+a[[-1::-3]]
+a[[::3]]
+a[[::]]
+a[[:]]
+a[[: :-1]]
+Exit
+*)
+(*
+Sum=1; For[i=10,i>=1,i--,Sum+=i]; Print[Sum]
+f[a_]:=a+1
+x=y=z=3
+x^y^z
+x^y
+3^3^3
+f[3]
+Exit
+*)
+
+(*
+Timing[sum=0; For[i=0,i<100,i++,sum+=i]; Print[sum]]
+Timing[sum=0; Do[sum+=i,{i,0,10}]; sum]
+Timing[sum=0; For[i=0,i<100,i++,sum+=i]; Print[sum]]
+Part[Part[a_,b__],c__]:=Part[a,b,c];
+Part[Part[a_,b__],c__]:=Part[a,b,c]
+Part[Part[a,b],c]//FullForm
+a[[b]][[c]]
+Exit
+*)
+(*
+f[1]
+1+2+a+1
+a+b
+a
+a+b/.a->3
+Table[i,{i,1,3}]
+1+1+3
+3+4*5+2+3
+Exit
+*)
+(*
+#i=1; #While[i<100, i++;Print[i] ]
+Sum=1; For[i=1,i<=10,i++,Sum+=i]; Print[Sum]
+Sum=1; For[i=1,i<=10,i++,Sum*=i]; Print[Sum]
+Sum=1; For[i=10,i>=1,i--,Sum+=i]; Print[Sum]
+Sum=1; For[i=10,i>=1,i--,Sum/=i]; Print[Sum]
+Exit
+*)
+(*
+a+2a+3+4 +3*a*b*4/.{x->b,a->c}
+1+2+3+a+3*a+2*a
+3a +3.33333a
+f[1,b,c]
+2*100
+1+2
+Exit
+*)
+(*
+a
+b
+f[1,'a','b']
+If[1,'a','b']
+If[0,'a','b']
+If[a,'a','b']
+If[x,'a','b']
+Exit
+*)
+(*
+Evaluate["1<2;"]
+1<2
+1>2
+Exit
+*)
+(*
+ExpressionLess[Times[a,b],Plus[a,b]]
+2a + 1a
+1 a  + 2 a
+y[] x
+y x z f 3+4f a +3 f b +2 f c+1 f c
+a+b+c
+c+b+a
+a f + f c +2.b f+1.b f+3 b f +1.5b f
+y[]
+HoldPattern[x*y]
+Exit
+*)
+(*
+x/.{y->1}
+x/.{x->1,y->2}
+x/.{x->1}
+Exit
+*)
+(*
+MaxRecursionDepth=5
+x:=x+1
+x
+Exit
+*)
+(*
+MaxRecursionDepth=5
+a={1,2,3}
+a.b
+a
+#a
+Exit
+*)
+(*
+Matrix['a']={1,2,3}
+a=Matrix['a']
+a.ToList['a']
+a.ToList[]
+b = Matrix[2,{3,4}]
+b.ToList[]
+c=Matrix[{{2,3,4},{3,4,5},{7,8,9}}]
+c.ToList[]
+Exit
+*)
+(*
+x=10
+x--
+x
+x++
+x
+--x
+x
+++x
+x
+Exit
+*)
+(*
+If[True,1,2]
+If[False,1,2]
+x
+1.2+2.3
+a+b
+b+a
+a+a^3+c+b+a*b+a^2
+a+a^3+c+b+a*b+a^2+a^3
+{a->1,b->2}
+Exit
+*)
+(*
+a b+a^2
+a+a b+a^2
+a+c+a*b+a+a^2
+a+c+b+a*b+a^2
+Exit
+*)
+
+(*
+Help[Help]
+Help[System`Help]
+?Help
+Exit
+*)
+
+(*
+StringSplit["a  c   ,b 	 "," "]
+b=StringSplit["a  c   ,b 	 ",", "]
+a=StringSplit["a  c   ,b e"," "]
+a[[:]]
+a[[2:]]
+a[[:3]]="good"
+a
+a[[4:3]]
+a[[3::5]]
+a[[3::5::]]
+a[[3::5::2]]
+a[[3:: ::]]
+a[[3:: ::2]]
+a[[:: ::2]]
+a[[:: ::2]]
+a[[:: ::]]
+Exit
+*)
+
+(*
+a aa
+aa a
+a*aa*a*aaa
+$_^3&[3]
+Function[{x,y},x^2+y^2][3,4]
+Exit
+*)
+
+(*
+a.b
+Matrix['a'].DeviceToHost[]
+Exit
+*)
+
+(*
+MatEvaluate['x=-3:0.1:3; y = randn(10000,1); hist(y,x); ']
+Sleep[20]
+Exit
+*)
+
+(*
+x=2
+x
+f[x_]:=x^2
+f[2]
+g[x_]:=x^3
+a[x_]:=x^4
+b[x_]:=x^5
+g[2]
+a[2]
+b[2]
+a+b+a
+Dimensions[{1,2}]
+Exit
+*)
+
+(*
+MatEval['a=[1 2; 3 4; 5 6];']
+MatGetValue['a']
+MatPutValue['a',{{1,2,3},{3,4}}]
+MatGetValue['a']
+MatPutValue['a',{1,2,3}]
+MatGetValue['a']
+MatPutValue['b',45]
+MatGetValue['b']
+Exit
+*)
+
+(*
+MatEval['a=[1 2; 3 4; 5 6];']
+MatEvaluate['a*4;']
+MatEvaluate['b=3;b=a*4;a=4;']
+MatGetValue['a']
+MatGetValue['b']
+
+MatEval['a=[1 2; 3 4; 5 6]']
+MatEvaluate['a*4;']
+MatEvaluate['b=3;b=a*4;a=4']
+MatGetValue['b']
+MatGetValue['a']
+Matrix['a']={{1,2},{3,4},{5,6}}
+MatrixGet['a']
+Matrix['a']={{1,2,3},{3,4,5}}
+MatrixGet['a']
+Exit
+*)
+
+(*
+a=Matrix['a']
+a.Set[{{1,2,3},{3,4,5}}]
+MatPutMatrix['a']
+Matlab>>> a=a+1; <<<
+MatGetMatrix['a']
+a.ToList[]
+a.Dump['a.dat']
+Matlab>>>
+plot(a)
+<<<
+Sleep[30];
+Exit
+*)
+(*
+a=Matrix['a']
+a.Import['a.dat']
+a.ToList[]
+MatrixPosition[]
+Exit
+*)
+
+
+(*
+ReadList["x.m"]
+GetModule["MartensiteTransition"]
+{Nx=16,Ny=16,Nz=16,Dx=0.1,Dy=0.1,Dz=0.1};
+MatrixSet["StrainTensor",
+{{{0.00,0.0063,0.0063},
+{0.0063,0.0,0.0063 },
+{0.0063,0.0063,0.0 }},
+{{0.00,0.0063,-0.0063},
+{0.0063,0.0,-0.0063},
+{-0.0063,-0.0063,0.0}},
+{{0.00,-0.0063,0.0063},
+{-0.0063,0.0,-0.0063},
+{0.0063,-0.0063,0.0}},
+{{0.00,-0.0063,-0.0063},
+{-0.0063,0.0,0.0063},
+{-0.0063,0.0063,0.0}}}]
+Matrix["StrainTensor"]
+Init[]
+Exit
+*)
+
+
+
+(*
+b[x_]:=Module[{y},
+    y=x;
+    Print["-->",x,",",y,"<--"];
+    y++
+]
+x*y^2+3+x*y^2
+c[x_]:=Module[{y=x},y*3]
+b[x]
+b[2]
+y
+c[3]
+g[3]
+Quit
+Exit
+*)
+
+(*
+Plus[x,y]
+Plus[x,y][2]
+Head[Plus[x,y][2]]
+Plus[a+b]*Plus[c+d]
+Plus[a+b]*Plus[c+d]/.Plus->Times
+Exit
+*)
+
+(*
+MatchQ[{a,b},{x__Symbol}]
+MatchQ[{a,b},{__Symbol}]
+MatchQ[{a,b,"a"},{__Symbol}]
+MatchQ[{a,b,"a"},{__Symbol,__String}]
+
+Plus[a,b][a]
+Head[Plus[x]]
+Exit
+*)
+
+(*
+2 a b//FullForm
+a_b__//FullForm
+MatchQ[ a[b,c], a[s__] ]
+MatchQ[ a[b,c], a[__] ]
+MatchQ[ a[b,c],a[ _] ]
+MatchQ[ a[b,c],a[ _,_] ]
+f[b_]:=Log[b]
+f[0.5]*100
+b+2a
+Log[a^b]
+b+b^2+a^3+b^4+a^4
+Exit
+*)
+
+(*
+7+a+2*9
+2*(a+2)
+b=2
+7+a+2*9+a+2*a
+1+2+a+4+b*(a+3+4+b+2a)
+1+2+a+4+b*(a+3+4+b+2a)
+1+2+a+4+b*(a+3+4+b+2a)
+a+3+4+b+2a//FullForm
+Exit
+*)
+
+(*
+x+2x/.HoldPattern[x_+a_Number*x_:>(a+1)x]
+a+2a/.HoldPattern[x_+a_Number*x_:>(a+1)x]
+a+a+a/.x_+x_:>2x
+x+a*x/.HoldPattern[a_*x_+x_:>(a+1)x]
+2x+x/.z_ x_+x_:>(a+1)x
+2x+x
+z_ x_+x_:>(a+1)x
+a+b+2a+2b+2a*b
+Exit
+*)
+
+(*
+8!
+MatchQ[1,x_Number]
+MatchQ[1,x_NumberQ]
+MatchQ[{1},x_List]
+x+x/.x_+x_:>2*x
+3*x+2*x/.a_ x_+b_ x_:>(a+b)*x
+2x+x
+Exit
+*)
+
+(*
+a x+x
+a_ x_+x_:>(a+1)x
+a x+x/.HoldPattern[x_+a_ x_:>(a+1)x]
+*)
+
+(*
+b=2
+b^1^2^3^4^5^6
+b^1^2^3^4^5^6^7^8*3*4+3+4+5
+Exit
+*)
+
+(*
+0*2
+0+0*2+1*2*0.5
+0+1-1+2
+1*2*x
+1*x
+x y 
+1 x y*x*y
+0+a+b
+Exit
+*)
+
+
+(*
+Set[2,34,44]
+HoldPattern[1=x=a]//FullForm
+1=x=a
+x!!b
+!False
+Exit
+*)
+
+(*
+x+y+z+a+b+  c
+xx y a b c
+a_ x_ b_
+=a
+ToExpression["a->3"]
+Null
+ToExpression[" x_+x_->2*x "]
+x+2x + a+2a
+x+2x 
+a*b*2*3
+a+b+2+3
+a*b*2*3*c*z*a
+a*a*b*a*3*3*a
+a+b+c
+c+b+a
+Sort[{1,2,3,2,1}]
+Table[i,{i,10,1,-1}]
+Sort[Table[i,{i,10,1,-1}]]
+f[{2,3}][[1,1]]
+{2,3}[[1,2]]
+{2,3}[[1]]
+{2,3}[[-1]]
+{2,3}[[3]]
+Exit
+*)
+
+(*
+{{2,3}}[[1,1]]
+{2,{2,3}}[[2]]//Head
+Table[i*2,{i,{2,a,b}}]
+Table[i*2,{i,3}]
+Table[i*2,{i,3,4}]
+Table[i*2,{i,1,2,0.1}]
+//Head
+Exit
+*)
+
+(*
+Take[{x,y,z,c},{1}]
+Take[{x,y,z,c},{-1}]
+Take[{x,y,z,c},3]
+Take[{x,y,z,c},{1,3}]
+Take[{x,y,z,c},{1,3,2}]
+a={x,y,z,c,d,e,f,g}
+Take[a,{1,4,2}]
+Drop[a,{1,4,2}]
+a
+Exit
+*)
+
+
+(*
+Take[{x,{3, 3, 3 ,3},z,c},{2}]
+Take[{x,{3, 3, 3 ,3},z,c},{2,3}]
+Drop[{x,{3, 3, 3 ,3},z,c},2]
+Drop[{x,{3, 3, 3 ,3},z,c},-2]
+Drop[{x,{3, 3, 3 ,3},z,c},{2}]
+Drop[{x,{3, 3, 3 ,3},z,c},{2,3}]
+Drop[{x,{3, 3, 3 ,3},z,c},{2,4,2}]
+Drop[{x,{3, 3, 3 ,3},z,c},{2,4,3}]
+Drop[{x,{3, 3, 3 ,3},z,c},{-2,4,1}]
+Drop[{x,{3, 3, 3 ,3},z,c},{-2,4,1}]
+Drop[{{x,3,4},{3, 3, 3 ,3},{z,3},{c,3}},2,{1}]
+Print[]
+Exit
+*)
+
+
+(*
+Take[{{x,3,4},{3, 3, 3 ,3},{z,3},{c,3}},2,2]
+Take[{{x,3,4},{3, 3, 3 ,3},{z,3},{c,3}},4,2]
+Take[x,1]
+Take[{x,y,z,c},{3,2,-1,4}]
+Exit
+*)
+
+(*
+x=2
+Table[x=x*i,{i,10,11,0.2}]
+Do[x=x*i,{i,10,15}]
+x
+Exit
+*)
+
+(*
+x=2
+x+x+y+y+y
+Table[{i,j}*x,{i,1},{j,2}]
+ReplaceAll[{i,j},{i->1,j->2}]
+Table[a,{-0}]
+Table[a,{0,2}]
+Table[i^3,{i,8}]
+Table[i,{i,7,8}]
+Table[i^0.1,{i,7,8,0.1}]
+Table[a,{i}]
+Exit
+*)
+
+(*
+x+x+z/.x_+y_:>x*y
+x+x+x
+x*x*y/.x_*x_:>x^2
+a+b/.{a->1,b->2}
+a=2
+x+x/.x_+y_:>a*a
+(x+x*y)^2/.x_+y_:>x*y
+Exit
+*)
+
+(*
+a+b=3
+a+b=3
+a+b
+y=4
+x=2
+y=x
+y
+f[2]=3
+f[2]++
+f[3]
+f[3]++
+f[3]
+Exit
+*)
+
+(*
+Replace[x+a,a->a*2+b]
+b+x+2*a+a+2*b
+b+2*a
+k
+_
+HoldPattern[MatchQ[{{x}},{_}] ]//FullForm
+_//FullForm
+HoldPattern[f[x_]:=x+1]
+Exit
+*)
+
+(*
+a=b=3
+a<b
+a
+x_
+x_//FullForm
+_x//FullForm
+MatchQ[{x,y,{z,z}},{x_,_,{x_,_}}]
+Exit
+*)
+
+(*
+x=2
+x+1
+x=2.98783784378473E3
+(1+x)*33333333*3333*333333
+99+1
+0.2^2
+0.02*0.02
+1/2
+1/200
+1.1+2.8
+1/b
+Attributes[In]
+{a,b}
+1/b
+a*b-d
+a+b(c+d*c+(-e-d))
+Exit
+*)
+
+(*
+a=2;b=3;
+f@a
+a+
+b+
+c
+2+2
+2-2
+a>b
+a>=b
+
+a=2
+b=2
+a<b
+a<=b
+a-b
+-b
+a%b
+x++
+!b
+a||b
+a+b
+a^b
+--b
+++b
+Exit
+*)
+
+
+(*
+a=3;b=4;
+a=b
+a-=b
+a*b
+a*=b
+a!=b
+x_
+x__
+x___
+System`Set[x,3]
+x
+Set[x,4]
+x
+a&&b
+a;
+x--
+a-b
+a-=b
+a.b
+a==b
+a@b
+1+2//b
+Exit
+*)
+
+(*
+Attributes[f]={HoldRest}
+Attributes[f]={"HoldRest"}
+f[1+2,3+4]
+SetAttributes[f,{"HoldFirst"}]
+f[1+2,3+4]
+Attributes[f]={"HoldAll"}
+f[1+2,3+4]
+Exit
+*)
+
+(*
+Evaluate[1+(2+3)]
+(3+b+a+c+b*3+e+b)//Evaluate
+3+a+2*b+3*b+(c+e+2b+4b+b)//.HoldPattern[Plus[a___,Times[i_Number,x_],Times[j_Number,x_],b___]:>Plus[a,Times[Plus[i,j],x],b]]
+b+b+c/.HoldPattern[Plus[a___,x_,x_,b___]->Plus[a,2x,b]]
+a+b+b/.HoldPattern[Plus[a___,x_,x_,b___]->Plus[a,2x,b]]
+(a+b+2b+c/.HoldPattern[Plus[a___,x_,c_Number x_,b___]:>Plus[a,(1+c)x,b]])+1+2+b//FullForm
+(a+b+2b+c/.HoldPattern[Plus[a___,x_,c_Number x_,b___]->Plus[a,(1+c)x,b]])+1+2+b+b+b
+Exit
+*)
+
+
+
+(*
+MatchQ[b+b+c,HoldPattern[Plus[a___,x_,x_,b___]]]
+MatchQ[a+b+b,HoldPattern[Plus[a___,x_,x_,b___]]]
+MatchQ[b+b+c,Plus[a___,x_,x_,z___]]
+MatchQ[a+b+b+c,Plus[a___,x_,x_,z___]]
+Exit
+*)
+
+
+(*
+a*Plus[a,b,c,d]/.Plus[a_,x___]->Times[2,a,Plus[x]]
+a*(b+c)/.(x_+y_)->2x*y
+a+b+b+c/.HoldPattern[Plus[a__,x_,x_,b__]->Plus[a,2x,b]]
+a___+b__+c_//FullForm
+a b c+a+2a+b+a b + a c + a + a b c + a c b+a b c + a b c d
+a b + 2 a b + 3 a b+a b c + 2 a b c + 4 c b a == 6*a*b+3*a*b*c+4*a*b*c 
+Exit
+*)
+
+(*
+#MatchQ[In[1],Plus[a__,x_,x_,b__]]
+#In[1]/.{Plus[a__,x_,x_,b__]->Plus[a__,2x,b__]}
+
+Print[a+b,"+c","+d-",e,"\n"]
+Print[]
+Print[a+b+c]
+a= 20+22
+Print["My dad is ",a," years old"]
+(Plus[a,b]/.Plus[x__]->Plus[x])//FullForm
+Plus[a,b]/.Plus[x__]->Plus[x]
+Sequence[a,b]
+(Plus[a,b]/.Plus[x__]->Plus[x])//FullForm
+(Plus[a,b]/.Plus[x__]->Plus[x])//FullForm
+1/2*2/3*4/3*3*3
+a+1-1-a//FullForm
+a+1-1-a
+a+1-1-a
+Exit
+*)
+
+(*
+(Plus[a,b]/.Plus[x__]->Plus[x])
+3*b+2 b/.HoldPattern[b_ x_+c_ x_->(b+c)x]
+3*b+2 b/.HoldPattern[b_ x_+c_ x_->(b+c)x]
+MatchQ[a,x__]
+MatchQ[a,x_]
+Plus[x__]->x
+(Plus[x__]->x)//FullForm
+Plus[a,b]
+{Plus[x__],(Plus[x___])//FulForm}
+MatchQ[,x___]
+Exit
+*)
+
+(*
+((a+b)*c)^2 Plus[a*y]/.Plus[a*x__]->b*x
+Head[ f[x] ]
+Head[ f[x][x][x] ]
+"x"[2]
+2[2]
+(x+y)[x+y][x+y]
+Exit
+*)
+
+(*
+GetModule["Example"]
+Function[x]
+Function[]
+Exit
+*)
+
+
+(*
+GetModule["CudaTest"]
+Print["\nCuda device Infomation on this machine\n"]
+CudaTest`CudaInfo[]
+GetModule["MartensiteTransition"]
+a={1,2,{4,5}}
+a[[1]] = 3
+a
+a[[1]]
+a[[3,1]]={4,43,53}
+a[[3]][[1::2]] = 3
+a
+Print[]
+*)
+
+(*
+a=1
+a++
+a*9
+a=Dict[{1,2},{3,4},{4,5}]
+a[1]
+a[3]
+a[1]=9
+a
+Exit
+*)
+
+
+(*
+a=1
+a
+a={1+1,2+1,3+1,4+2}
+a[1]
+a[2]=9
+a
+a[2]
+a[3]
+a[1]
+a[[1]]
+Exit
+*)
+
+(*
+a=Dict['a':"b",c:e]
+a[f]=e
+a[c]
+a
+a[f]
+a.Exist[c]
+a.Exist[z]
+a.Exist[z,b]
+a.Insert[z,b]
+a
+*)
+
+(*
+A = DefClass[a=3,
+             f[x_]:=x^2+a,
+            ];
+b=A.New[]; a=A.New[];
+{a.a, b.a}
+b.a=9;
+{a.a, b.a}
+{a.f[4],b.f[4]}
+
+
+Matrix['a']
+
+*)
+
+(*
+Matlab>>>
+a=2
+<<<
+*)
+
+(*
+PyEvaluate['a=2']
+PyPutValue[b,{1,3,4,5}]
+
+Python>>>
+a=(2,2,3)
+b=b*2
+<<<
+
+Python>>>
+print('value of a = %s'%(a,))
+for i in range(1,10):
+  print("value of i = %s"%(i,))
+#this is not good for
+a=dict( (1,2),(3,4),(5,6))
+<<<
+PyGetValue[a]
+PyGetValue[b]
+   *)
+(*
+#this is not good
+Directory[]
+FileExistQ["input_test.ev"]
+*)
+
+(*
+c={}
+For[ i=1, i<=10, i++,
+     AppendTo[c,i]
+   ]
+c
+
+Exit
+a={1,2,3,4}
+Append[a, 'abc']
+Append[b,3]
+Append[{a,b},3]
+AppendTo[a, 'abc']
+a
+PopBack[a]
+a
+
+Exit
+Matrix['a'].Set[{1,2,3,4}];
+Matrix['a']={1,5,3,4};
+Matrix['a']
+Matrix['a'].ToList[]
+kappa = {1,2,3,4}
+kappa[1]
+kappa[2] = 9
+kappa
+
+Exit
+
+
+   *)
+(*
+a={1,2,3,4}
+a.Insert[2,3]
+a
+a = Dict[1->2,3->4]
+a.Insert[4,5]
+a
+a[4]
+f[x_]:=x^2
+f[3]
+a={1,2,3,4}
+a.Insert[2,3]
+a
+*)
+
+(*
+"a"+"b"+1+3+{3+4+"a"+"b"+StringJoin["a"+"b",3,4]}
+StringJoin["b"+"a"+"b",3,4,"c"]
+StringJoin["a","b"]
+"z"+"j"+"a"+"b"
+3+4+a+b+z+a+b+Sequence[3,4]
+*)
+SystemArgv[]
+SystemArgv[2]
+SystemArgv[5]
+SystemArgv[6]
+SystemArgv[7]
+SystemArgv[9]

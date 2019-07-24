@@ -1,0 +1,3 @@
+#!/opt/evawiz/bin/evawiz
+#this script will be executed when get the module in
+myAdd[x_,y_]:=Abs[x]+Abs[y]

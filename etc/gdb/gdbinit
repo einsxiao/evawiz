@@ -1,0 +1,9 @@
+#gdbinit file
+
+add-auto-load-safe-path /opt/evawiz/etc/gdb/evawiz
+#source /opt/evawiz/etc/gdb/evawiz/evawiz.py
+source $EVAWIZ_ROOT/etc/gdb/evawiz/evawiz.py
+set print pretty on
+set print object on
+set overload-resolution on
+

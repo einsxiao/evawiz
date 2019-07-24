@@ -1,0 +1,7 @@
+Set[var,expr]
+  将expr的求值结果赋值给value,返回求值结果
+等价写法:
+  var=expr
+连写:
+  var1=var2=var3=expr
+    =号连写求值顺序从右到左

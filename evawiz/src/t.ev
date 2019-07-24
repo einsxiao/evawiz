@@ -1,0 +1,3 @@
+#!/usr/bin/env evawiz
+
+{}.Append[3]

@@ -1,0 +1,85 @@
+\title{evawiz multi thread extension for C/C++/CudaC}
+
+在Cuda环境下,可以写出运算速度很快的GPU程序.但是,即使用户专注于数值计算,仍然会花费相当精力在运算无关的适应cuda环境的数据结构,cuda线程结构等等细节之上.
+  为此Evawiz提供了一种解决方案,使得编写Gpu代码变得相当容易.用户只需要考虑自己的实际问题,甚至不用担心程序是否在GPU上运行.因为按照Evawiz约定写好的加速程序,既可以在GPU上使用cuda设备加速运行,也可以在纯Cpu环境下以单核模式运行,或者多线程模式加速运行.
+
+为方便,下文称这样约定的程序为\red{EMT}(Evawiz Multi Thread)
+
+\section{准备编写一个EMT程序}
+在准备好evawiz环境,并注册和连接了evawiz账号之后,使用eva命令创建一个新模块(eva -h 查看eva命令帮助):
+eva new test -l cuda
+(注意只有创建cuda程序才能使用GPU加速,如果创建普通cpp后缀的c++程序,则只能使用多线程加速)
+然后注意到在~/evawiz/test/文件夹中已经有了testModule.h, testModule.cu, Makefile,input.ev等文件了.
+这时,我们就可以在这些文件中添加的源代码了.
+
+\section{EMT语法}
+EMT约定模式是将原来的循环语句替换为一个evawiz kernel.需要给出kernel的循环变量,变量的循环范围,以及kernel的参数列表及其类型,以及实际使用的参数
+与Matrix数据类型配合(/opt/evawiz/evawiz/include/eva_matrix.h)可以写出通用的代码
+这里有一个约定:输入参数都是传值方式,数组结构的数据都用Matrix类型保存,Matrix做参数处理时也是通过传值. 
+
+在testModule.cu中第30行到第35行就是一断完整的EMT程序
+\code{c}
+/****************************/
+#include<evawiz>          
+#define ModuleName test 
+/****************************/
+#include"testModule.h" 
+using namespace std;
+using namespace evawiz;
+__DEBUG_MAIN__("input.ev");
+/****************************/
+ModuleInitialize
+{
+  dout<<"Module "<<__ModuleNameStr(ModuleName)<<" is constructing."<<endl;
+
+}
+
+ModuleFinalize
+{
+  dout<<"Module "<<__ModuleNameStr(ModuleName)<<" is deconstructing."<<endl;
+
+}
+
+/****************************/
+DefineFunction(TestFunction,"A test Function can be called both from c/c++/cudac(int TestFunction_Eva(Object&,Evaluation*))"
+    "and eva kernel (TestFunction[...])."){
+  cout<<"Module test is created from the standard template."<<endl;
+  Matrix arr;
+  arr.Init(2,3,3);
+  arr= 3.14;
+  cout<<arr<<endl;
+  arr.HostToDevice();
+#pragma evawiz launch kernel<<<i:3,j:3>>>(Matrix mat:arr)
+  {
+    mat(i,j)*=3;
+  }
+  arr.DeviceToHost();
+  cout<<arr<<endl;
+  ReturnNull;
+}
+\end{cod}
+其中:
+30行是将GPU的数据拷贝到Gpu设备上.如果数据一直在Gpu设备上,则此句删掉,CPU运行模式下,此句会自动忽略
+35行是将GPU上的计算结果拷贝回主机处理,如果数据不要要拷贝回主机,则此句删掉,GPU运行模式下,此句自动忽略
+
+31行是新发起的kernel的结构,指标i从0->3,指标j从0->3, 输入参数只有一个其数据类型为Matrix 在kernel名字为mat,外部程序实际变量为arr
+32-34是具体的计算内容
+
+\section{运行程序}
+首先,在~/evawiz/test/文件中执行make命令,编译程序
+模块目录中,文件input.ev的内容如下:
+\code{sh}
+#!/opt/evawiz/evawiz/bin/evawiz
+####################################################
+# This is an input test script for current module  #
+####################################################
+GetModule['test']
+#SetRunningMode["Cpu"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+TestFunction[]
+\end{code}
+执行这段脚本,脚本中第8行中的TestFunction函数会直接调用TestModule中的TestFunction函数,执行完毕可以看到执行结果
+程序首先会自动检测Gpu环境,如果有Gpu则会将运行模式设置为Gpu否则为Cpu. 也可强制用SetRunningMode设置运行模式.在没有Gpu环境下,使用Gpu模式运行,程序会报错.
+
+
+

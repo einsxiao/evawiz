@@ -1,0 +1,74 @@
+
+in.txt,88
+Matrix[Matrix1,0
+Matrix[Matrix11,166
+l=58,976
+b[b65,1078
+x=241,3801
+a=272,4158
+
+main.cu,69
+using namespace std;3,20
+using namespace evawiz;4,41
+int main(6,65
+
+main.o,162
+ee165,47612
+.target sm_20,351,96619
+.global .align 8 .b8 _ZTVSt9basic_iosIcSt11char_traitsIcEE[_ZTVSt9basic_iosIcSt11char_traitsIcEE355,96810
+X1924,385889
+
+Makefile,193
+CC 3,18
+PREFIX 4,28
+FLAGS 5,44
+FLAGS 6,56
+SRCS 7,70
+OBJECTS 8,94
+EXCU 9,135
+LIB	10,151
+INCLUDE 11,171
+all:all12,194
+main.o:main.o15,348
+clean:clean17,404
+install:install20,431
+
+Makefile.nvcc,9
+CC 3,18
+
+make.sh,52
+  modulename=16,202
+  author=17,247
+  dir=18,288
+
+evawiz,16
+tt323,410096
+
+modulemake.sh,49
+  modulename=5,102
+  author=6,147
+  dir=7,188
+
+sysmake.sh,12
+Flags=3,23
+
+tags,25
+CC	Makefile	/^CC CC1,0
+
+x.m,8
+a=2,41
+
+x.m.log,21
+Matrix[Matrix3,104
+
+x.m.err,0
+
+Times,0
+
+Evawiz.log,0
+
+Evawiz.err,0
+
+in.txt.log,0
+
+in.txt.err,0

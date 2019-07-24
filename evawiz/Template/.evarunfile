@@ -1,0 +1,9 @@
+*.h
+*.so
+*.ev
+*.eva
+*.py
+*.pyc
+*.m
+/doc/
+!/build/

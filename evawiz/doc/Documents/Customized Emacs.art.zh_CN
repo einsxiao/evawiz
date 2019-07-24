@@ -1,0 +1,45 @@
+\title{evamcs+evil插件定制}
+
+emacs+evil插件定制,造成了一个有vim操作习惯的emacs
+\section{文本编辑功能}
+eva定制总体上继承了vim操作习惯,模拟了vim的正常模式,插入模式和visual等模式以及相应模式下的基本操作.vim的基本操作,可以在linux shell键入vimtutor来学习.
+  可以在~/.emacs中新行中键入(evil-mode nil)来禁用vim习惯.其它订制选项也可以加入该文件中.
+eva同时兼容emacs快捷键.emacs的诸如buffer,windows的布局概念可以寻找基本emacs入门文章学习.
+如果初学不适应许多快捷键,那么通过菜单栏也可以完成大部分编辑操作.
+\section{快捷键}
+
+\title2{文本编辑基本操作}
+Esc退回到正常或者命令模式,在命令模式中方向控制有h,j,k,l来控制
+  k
+h   l
+  j
+命令模式下的基本编辑操作:
+0 到行首   \$ 到行尾 
+i 当前字符下插入  a 当前字符后插入
+this is good
+x 删除当前字符 
+u 撤销上一步编辑操作
+dw/2dw/3dw/dd/2dd/3dd 删除当前单词/删除两个单词/删除3个单词/删除一行/删除两行/删除3行
+Shift-j 将下一行与当前行连接到当前行末尾
+/ 查找字符串
+: 键入vim命令,譬如替换%s/abc/cba/g
+
+\title2{window和buffer相关的基本操作}
+ Ctrl-x 2在下方打开一个window    Ctrl-x 3在右方打开一个window
+ Ctrl-x Ctrl-f 打开一个文件,并载入内容到同名buffer中
+ Alt+h,j,k,l来向左,下,上,右切换不同可见window.
+ F3切换到最近一个buffer       Ctrl-F3打开buffer列表,可选择一个buffer来显示.
+ Alt-[ 恢复上一次窗口布局     Alt-] 恢复下一次窗口布局 
+ Alt-x 后会要求输入要运行的emacs函数
+    math: 启动EvaWiz kernel,其中可以用M-Language进行交互,等等
+    shell: 当前文件夹下启动一个bash shell,执行系统命令很方便
+
+\title2{gdb调试程序}
+首先程序代码编写完成并写好Makefile之后,使用F9编译链接(依赖于Makefile的写法).Alt+e跳到下一个错误,Alt+Shift+e跳到上一个错误.修改错误直到所有的语言上的错误得到更正.
+程序编译连接完成之后,可以使用gdb进行断点,单步等类型的调试
+F5 打开gdb调试环境 Ctrl+F5 结束gdb调试环境
+启动调试环境之后
+可以使用Alt+b在当前行设置/清除断点,重启gdb之后所有断点都会消失
+使用Alt+s启动程序,Alt+n单步运行(不进入子程序),Alt+i(单步运行,进入子程序),Alt+r(继续运行,直到下一个断点或程序结束)
+调试过程中,使用Alt+p(打印光标下变量),Alt+Ctrl+p(打印指针引用)
+

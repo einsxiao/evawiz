@@ -1,0 +1,3 @@
+Bugs
+
+在MPI和nvcc同时使用时,调用system函数去调用系统命令会出现segmentfalt错误,,原因未知.

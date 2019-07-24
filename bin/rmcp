@@ -1,0 +1,25 @@
+#!/usr/bin/python
+import os
+import sys
+import commands
+
+args = sys.argv;
+if len(args) < 3:
+    print """Usage:
+    	%s [origianl_file(s)] [destination_directory]
+    """%args[0]
+    exit(-1);
+des_dir = sys.argv[-1]
+if not os.path.exists(des_dir):
+    os.makedirs(des_dir)
+if not os.path.isdir(des_dir):
+    print des_dir,"exist. But it is not a directory"
+
+for ori_file in args[1:-1]:
+    #if os.path.samefile(ori_file,des_dir): continue
+    if os.path.isdir(ori_file): continue
+    bfile = os.path.basename(ori_file)
+    des_file = os.path.join(des_dir,bfile)
+    if os.path.exists( des_file ):
+        os.remove( des_file );
+    commands.getstatusoutput("cp -rf %s %s"%(ori_file,des_file))

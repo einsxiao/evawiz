@@ -1,0 +1,2 @@
+For[init,cond,incr,expr]
+  先对init求值完成初始化;然后对cond求值,若结果为真,则对expr求值,随后对incr求值完成增量运算;重复对cond求值判断及后续求值过程,直到cond求值结果为假,停止运算,返回Null.

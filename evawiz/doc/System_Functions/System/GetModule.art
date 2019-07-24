@@ -1,0 +1,2 @@
+GetModule["ModuleName"]
+  引入名为ModuleName的模块中函数和变量的定义

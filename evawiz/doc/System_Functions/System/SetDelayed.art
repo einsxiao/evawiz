@@ -1,0 +1,6 @@
+SetDelayed[var,expr]
+  将expr作为滞后量赋值给var.滞后量意味着expr保持将保持未求值状态; 当var每次在表达式中出现时,将被替换为expr,并被求值.表达式返回expr.
+等价书写:
+  var:=expr
+连写:
+  var1:=var2:=var3:=expr

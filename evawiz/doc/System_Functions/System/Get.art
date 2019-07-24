@@ -1,0 +1,2 @@
+Get["FileName"]
+  执行名为"FileName"的m脚本,获取其变量,函数及模块的定义

@@ -1,0 +1,2 @@
+#!/bin/sh
+/opt/evawiz/bin/update-eva >/dev/null 2>&1

@@ -1,0 +1,34 @@
+#!/opt/evawiz/evawiz/bin/evawiz
+####################################################
+# This is an input Mathematica script for current module  #
+####################################################
+GetModule['Mathematica']
+#SetRunningMode["Cpu"]
+Print["Program is running in ",GetRunningMode[]," Mode."]
+
+a = Matrix['a']
+a.Set[{1,2,3,4}]
+
+MLPutMatrix['a',a  ]
+
+Mathematica>>>
+a
+<<<
+MLGetValue['a']
+
+Exit
+Mathematica>>>
+Export["test.svg",
+       Plot3D[Sin[x]+Cos[y],
+              {x,-a,a},
+              {y,-a,a},
+              ImageSize->640,
+              Axes->False
+             ]
+      ]
+
+<<<;
+System['display test.svg']
+
+
+

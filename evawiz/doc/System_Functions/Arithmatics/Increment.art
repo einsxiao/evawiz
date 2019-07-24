@@ -1,0 +1,9 @@
+Increment[x]
+  x的值加1.式中要求x是一个有值变量.
+等价书写:
+ x++
+
+$#
+例子:
+MatheinsExpression[ x=1; x++ ]
+

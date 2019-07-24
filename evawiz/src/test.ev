@@ -1,0 +1,65 @@
+#!/opt/evawiz/evawiz/src/evawiz-dev
+Print['For test the validity of the many basic functions of EVAWIZ']
+#######################################
+UnProtect[ Test ]
+Test[init_,a_,b_]:=
+Module[{}, 
+       init; 
+       Print["Test: ",HoldOnce[init]," ",HoldOnce[a]," = ",a," ?= ",b,]; 
+       If[a == b, Print["        Ok"], Print["     Error"]]
+      ]
+AddAttribute[Test,{HoldAll,Protected}]
+#######################################
+Print['Test Arithmatics']
+Test[{},99+99,198]
+Test[{},99-99,0]
+Test[{},9*9,81]
+Test[{},9/9,1]
+Test[{a=(3,4),b=(4,5)}, a+b,(7,9) ]
+(*
+Test[{a=(3,4),b=(4,5)}, a+b,(7,9)]
+Test[{a=(3,4),b=(4,5)}, a-b,(-1,-1)]
+Test[{a=(3,4),b=(4,5)}, a*b,(-8,31)]
+Test[{a=(3,4),b=(4,5)}, a/b,(32/41,1/41)]
+
+Print['Test Inner Pattern System']
+Clear[a]
+Clear[b]
+a
+b
+Clear[Clear]
+f[x_]:=x^2
+f[x_,y_]:=x^2+y^3
+f[b]:=1
+f[c]:=2
+f[e]:=3
+f[e,f]:=4
+f[c,x_]:=5
+f[c,d]:=6
+f[e,d]:=7
+
+g[y_]:=y^3
+g[b]:=1
+g[c]:=2
+g[e]:=3
+g[e,f]:=4
+g[c,x_]:=5
+g[c,d]:=6
+g[e,d]:=7
+
+h[x_] :=1
+h[x_,y]:=3
+h[x_,y_]:=4
+h[f[x_],g[y_] ]:=11
+h[f[x_,z_],g[y_] ]:=12
+
+#f[c,d]
+f[c,a]
+#g[c,d]
+#g[c,a]
+#h[f[2],g[3] ]
+#h[f[2,3],g[3] ]
+#h[f[2,3],g[3],h[4]]
+#h[3,4]
+*)
+

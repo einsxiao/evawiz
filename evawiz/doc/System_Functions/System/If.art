@@ -1,0 +1,20 @@
+\title{If}
+\title1{this is title 1}
+If[cond,expr]
+  对cond求值,若结果为真,则返回expr求值结果;否则返回Null.
+If[cond,expr1,expr2]
+  对cond求值,若结果为真,怎返回expr1求值结果;否则返回expr2求值结果.
+等价书写:
+  若[条件,表达式]
+  若[条件,表达式1,表达式2]
+\section{Examples}
+\code{math}
+IN>>If[3>2,"3>2 is right"]
+OUT>>"3>2 is right"
+
+IN>>If[False,"Nice"]
+OUT>>
+
+IN>>If[False,"好","不好"]
+OUT>>"不好"
+\end

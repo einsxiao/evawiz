@@ -1,0 +1,7 @@
+#!/opt/evawiz/evawiz/bin/evawiz
+####################################################
+# This is an input test script for current module  #
+####################################################
+GetModule['Template']
+
+CFortranFunction[1]

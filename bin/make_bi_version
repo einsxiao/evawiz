@@ -1,0 +1,20 @@
+#!/bin/sh
+make release
+name=`pwd`
+name=`basename $name`
+has_cu=0
+cu_files=`ls *.cu`
+for item in $cu_files;do
+  mv $item $item.cpp
+  has_cu=1
+done
+if [ $has_cu -eq 0 ]; then
+  exit 0
+fi
+mv lib${name}Module.so libcuda_${name}Module.so
+make release
+cu_cpp_files=`ls *.cu.cpp`
+for item in $cu_cpp_files;do
+  mv $item ${item//.cu.cpp/.cu}
+done
+

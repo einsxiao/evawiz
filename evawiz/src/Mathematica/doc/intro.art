@@ -1,0 +1,56 @@
+Mathematica模块介绍
+
+Mathematica模块是一个基本工程管理单元.
+I.对C++/Cuda代码来说,则是一个独立的代码单元.
+模块由C++类MathematicaModule所定义的一个基本工作空间. 通常建议一个模块完成某一类或者某一件具体的工作. 对所需要完成的工作所需的变量和函数的声明均在此类中完成. 
+Mathematica类的声明需要遵循特定格式(使用eva new moduleName向系统注册模块时已经自主创建), 如果修改这些关键部分, 可能导致不能正常编译, 或者造成程序功能不正常. 除此之外, 可以像正常类一样定义自己的成员变量和成员函数.
+Mathematicae由Eva系统自主管理. 对于Mathematica中的功能, 用户不需要对其进行实例化之后使用, 而是通过MathematicaModule中定义的Eva 函数来与Eva Kernel进行交互交互来完成. Eva Kenel可以调用Mathematica Module中定义的特殊Eva函数是形如
+	使用DeclareFunction(funcName) 进行声明
+	使用DefineFunction(funcName,”description_string”){ … } 进行定义的函数.
+  Mathematica中具有默认类型为指向Kernel核心类Evaluation的成员变量指针Eva,通过Eva的成员函数可以直接与Kernel交互. 在定义Eva函数时, 有三个地方需要注意. 
+1.输入参数存储在类型为EvaObj的参数Argv中,
+a)	Argv.Size()判断参数个数
+b)	可以使用Argv[i]取出第i个参数
+c)	校验输入参数类型的几个宏(不符合则自动抛出错误)
+CheckShouldBeNumber(i)  第i个参数只能为数字
+CheckShouldBeString(i) 第i个参数只能为字符串
+CheckShouldBeSymbol(i) 第i个参数只能为符号
+CheckShouldEqual(n) 总共只能有n个参数
+CheckShouldBeWithin(n1,n2)  参数个数为n1到n2之间
+详见/opt/evawiz/evawiz/include/module.h
+2.使用Eva指针和Kernel进行交互
+Eva指向Kernel实例, 定义见/opt/evawiz/evawiz/include/evaluation.h
+常用函数
+		InitVar(var,default_value);
+		InitVar3(“varName”,var,default_value);
+		Eva->GetValue(char* name,EvaObj &var);
+		Eva->GetValue(EvaObj &var);
+3.返回值方法有两种
+一种是将值存储于Argv参数中,然后使用return int_code;方式返回
+ Argv.Set(value) 系列函数将值存于Argv中
+另一种是使用预定义宏/opt/evawiz/evawiz/include/module.h
+		ReturnNull;  返回空值
+		ReturnNumber(num_value);   返回数字
+		ReturnString(str_value);  返回字符串
+		Return(EvaObj &var);  返回EvaObj类型的值
+
+当Mathematica模块准备好了之后, 在Eva Kernel中只需要先用GetModule[‘Mathematica’]将Mathematica模块载入到Kernel中, 然后就可以直接调用Mathematica模块中声明和定义过的Eva函数
+II.对Matlab代码和Python代码,作为一个独立的代码管理单元
+在Eva Kernel中使用GetModule[‘Mathematica’]载入后, 模块文件夹下的Matlab函数定义和Python定义可以直接在Eva Kernel中的的Python语境和Matlab语境中使用, 例:
+	Mathematica模块的matlab函数matAdd, 和pyMod.py中pyAdd函数的使用
+#!/opt/evawiz/bin/evawiz
+GetModule[‘Mathematica’]
+#Matlab语境
+Matlab>>>
+x=matAdd(-3,3)
+<<<
+MatGetValue[‘x’]
+
+#Python语境
+Python>>>
+import pyMod
+x = pyMod.pyAdd(-3,3)
+<<<
+PyGetValue(‘x’)
+
+
