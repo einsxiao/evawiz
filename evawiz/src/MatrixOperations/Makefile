@@ -23,6 +23,7 @@ DFORFLAGS := -g3 -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter
 ################################################################
 MODULE_NAME := $(notdir $(CURDIR))Module
 EXCU := exe
+SHELL := /bin/bash
 
 ifeq ($(MPI_ENABLE),True)
 	LIBS := $(LIBS) -lmpi
