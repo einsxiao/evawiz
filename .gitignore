@@ -26,6 +26,7 @@
 /soft
 /favicon.ico
 /scripts
+/tmp
 !/scripts/eva*
 !/scripts/Crypto
 !/scripts/mod_requests
@@ -33,6 +34,7 @@
 !/scripts/README.md
 !/scripts/update-eva
 !/base/fftw3
+
 
 exe
 *.so

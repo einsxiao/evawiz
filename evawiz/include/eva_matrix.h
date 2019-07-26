@@ -6,12 +6,13 @@ namespace evawiz{
   template<class type>
   class Matrix_T{
   public:
-    //state info means 0: normal 1: copied  2: temp_unuse 3: temp_in_use
+    // state info means 0: normal 1: copied  2: temp_unuse 3: temp_in_use
     unsigned char              state=0, ND=0;
     unsigned short             D4=0,    D5=0,    D6=0,    D7=0,    D8=0;
-    int                        D1=0,    D2=0,    D3=0;
-    type                      *DataDevice = NULL;
+    unsigned int               D1=0,    D2=0,    D3=0;
     type                      *Data = NULL;
+    type                      *DataDevice = NULL;
+    // size of matrix 1+1+5*2+3*4+2*8 = 40
   public:
     __cond_host_device__       Matrix_T();
     __cond_host_device__      ~Matrix_T();
@@ -165,8 +166,8 @@ namespace evawiz{
   template<class type> Matrix_T<type>::Matrix_T(const Matrix_T<type>&other){
     state = MatrixStateCopied;
 #define CP(item) item = other.item
-    CP(ND);
-    CP(D1);CP(D2);CP(D3);CP(D4);CP(D5);CP(D6);CP(D7);CP(D8);
+    CP(ND);CP(D4);CP(D5);CP(D6);CP(D7);CP(D8);
+    CP(D1);CP(D2);CP(D3);
 #ifndef __CUDA_ARCH__
     CP(Data);
 #endif

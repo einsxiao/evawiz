@@ -8,11 +8,11 @@ DNVFLAGS := $(FLAGS) -G -g --compiler-options -g3  --compiler-options -Wall --co
 NVFLAGS := $(FLAGS) -O2 --compiler-options -fopenmp  -Wno-deprecated-gpu-targets
 
 ##################################################################################
+# core should be compiled ahead, evacc is depeneded on core(libeva.so)
 DIRS := 
-DIRS := evacc core Algebraic System Arithmatics List Matrix OS Class MPI MatrixOperations String Python
-#envDIRS := Guis Mathematica MatlabEngine Python 
+DIRS := core evacc Algebraic System Arithmatics List Matrix OS Class MPI MatrixOperations String Python
+#envDIRS := Guis Mathematica MatlabEngine
 DIRS := $(DIRS) $(envDIRS)
-#DIRS := system Algebraic System Arithmatics List Matrix OS Class MPI MatrixOperations Python String Guis Mathematica MatlabEngine
 SHELL := /bin/bash
 ##################################################################################
 BUILDDIRS = $(DIRS:%=build-%)
