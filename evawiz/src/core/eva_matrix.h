@@ -12,7 +12,7 @@ namespace evawiz{
     unsigned int               D1=0,    D2=0,    D3=0;
     type                      *Data = NULL;
     type                      *DataDevice = NULL;
-    // size of matrix 1+1+5*2+3*4+2*8 = 40
+    // size of matrix 1+1+5*2+3*4+2*8 = 40 B
   public:
     __cond_host_device__       Matrix_T();
     __cond_host_device__      ~Matrix_T();
@@ -22,7 +22,7 @@ namespace evawiz{
     void                       SetDim(const int p,const int Np);
     __cond_host_device__ int   DimN()const;
     __cond_host_device__ int   Dim(const int p)const;
-    int                        Size()const;
+    u_int                      Size()const;
     int                       *NewDimArray();
     void                       Init(int*dim,int dataPosition=MatrixHost,bool veryInit=false);
     template<class otype> void Init(const Matrix_T<otype>&,int dataPosition=MatrixHost,bool veryInit=false);
@@ -69,15 +69,15 @@ namespace evawiz{
     //fortran index style with collomn major and index starting with 1
     __cond_host_device__ type &fPart(int *pArr);
     __cond_host_device__ type &fIndex(int *pArr);
-    __cond_host_device__ type &operator()(char,int *pArr);
-    __cond_host_device__ type &operator()(char,int p);
-    __cond_host_device__ type &operator()(char,int p1,int p2);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6,int p7);
-    __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6,int p7,int p8);
+    /* __cond_host_device__ type &operator()(char,int *pArr); */
+    /* __cond_host_device__ type &operator()(char,int p); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6,int p7); */
+    /* __cond_host_device__ type &operator()(char,int p1,int p2,int p3,int p4,int p5,int p6,int p7,int p8); */
     __cond_host_device__ type &fat(int p);
     __cond_host_device__ type &fat(int p1,int p2);
     __cond_host_device__ type &fat(int p1,int p2,int p3);
@@ -117,10 +117,10 @@ namespace evawiz{
     int  BinaryDumpFile(string filename);
     template<class ostype,class mtype> friend ostype &operator<<(ostype &os,const Matrix_T<mtype>&data);
     template<class istype,class mtype> friend istype &operator>>(istype &is,Matrix_T<mtype>&data);
-    static int CalculateSize(int*dim);
+    static u_int CalculateSize(int*dim);
   };
   template<class type>
-  int Matrix_T<type>::CalculateSize(int*dim){
+  u_int Matrix_T<type>::CalculateSize(int*dim){
     int size = 1;
     for ( int i=1; i<= dim[0]; i++ )
       size*= dim[i];
@@ -221,7 +221,7 @@ namespace evawiz{
     return dim;
   }
 
-  template<class type> int Matrix_T<type>::Size()const{
+  template<class type> u_int Matrix_T<type>::Size()const{
     int size = D1;
     for ( int i=2; i<= ND ; i++ )
       size *= Dim(i);
@@ -253,13 +253,13 @@ namespace evawiz{
     return Data[ p1 ];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1){
-#ifdef __CUDA_ARCH__
-    return DataDevice[ p1-1 ];
-#else
-    return Data[ p1-1 ];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,u_int p1){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[ p1-1 ]; */
+/* #else */
+/*     return Data[ p1-1 ]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1){
 #ifdef __CUDA_ARCH__
     return DataDevice[ p1-1 ];
@@ -290,13 +290,13 @@ namespace evawiz{
     return Data[ p1*D2+p2 ];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2){
-#ifdef __CUDA_ARCH__
-    return DataDevice[ (p2-1)*D2+p1-1 ];
-#else
-    return Data[ (p2-1)*D2+p1-1 ];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[ (p2-1)*D2+p1-1 ]; */
+/* #else */
+/*     return Data[ (p2-1)*D2+p1-1 ]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2){
 #ifdef __CUDA_ARCH__
     return DataDevice[ (p2-1)*D2+p1-1 ];
@@ -327,13 +327,13 @@ namespace evawiz{
     return Data[(p1*D2+p2)*D3+p3 ];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3){
-#ifdef __CUDA_ARCH__
-    return DataDevice[((p3-1)*D2+p2-1)*D1+p1-1 ];
-#else
-    return Data[((p3-1)*D2+p2-1)*D1+p1-1 ];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[((p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #else */
+/*     return Data[((p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3){
 #ifdef __CUDA_ARCH__
     return DataDevice[((p3-1)*D2+p2-1)*D1+p1-1 ];
@@ -366,13 +366,13 @@ namespace evawiz{
     return Data[ ((p1*D2+p2)*D3+p3)*D4+p4 ];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4){
-#ifdef __CUDA_ARCH__
-    return DataDevice[ (((p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
-#else
-    return Data[ (((p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[ (((p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #else */
+/*     return Data[ (((p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3,int p4){
 #ifdef __CUDA_ARCH__
     return DataDevice[ (((p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
@@ -407,13 +407,13 @@ namespace evawiz{
     return Data[(((p1*D2+p2)*D3+p3)*D4+p4)*D5+p5 ];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch, int p1,int p2,int p3,int p4,int p5){
-#ifdef __CUDA_ARCH__
-    return DataDevice[((((p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
-#else
-    return Data[((((p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch, int p1,int p2,int p3,int p4,int p5){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[((((p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #else */
+/*     return Data[((((p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3,int p4,int p5){
 #ifdef __CUDA_ARCH__
     return DataDevice[((((p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1 ];
@@ -450,13 +450,13 @@ namespace evawiz{
     return Data[((((p1*D2+p2)*D3+p3)*D4+p4)*D5+p5)*D6+p6];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6){
-#ifdef __CUDA_ARCH__
-    return DataDevice[(((((p1-1)*D5+p2-1)*D4+p3-1)*D3+p4-1)*D2+p5-1)*D1+p6-1];
-#else
-    return Data[(((((p1-1)*D5+p2-1)*D4+p3-1)*D3+p4-1)*D2+p5-1)*D1+p6-1];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[(((((p1-1)*D5+p2-1)*D4+p3-1)*D3+p4-1)*D2+p5-1)*D1+p6-1]; */
+/* #else */
+/*     return Data[(((((p1-1)*D5+p2-1)*D4+p3-1)*D3+p4-1)*D2+p5-1)*D1+p6-1]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3,int p4,int p5,int p6){
 #ifdef __CUDA_ARCH__
     return DataDevice[(((((p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
@@ -495,13 +495,13 @@ namespace evawiz{
     return Data[(((((p1*D2+p2)*D3+p3)*D4+p4)*D5+p5)*D6+p6)*D7+p7];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6,int p7){
-#ifdef __CUDA_ARCH__
-    return DataDevice[((((((p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
-#else
-    return Data[((((((p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6,int p7){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[((((((p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1]; */
+/* #else */
+/*     return Data[((((((p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3,int p4,int p5,int p6,int p7){
 #ifdef __CUDA_ARCH__
     return DataDevice[((((((p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
@@ -542,13 +542,13 @@ namespace evawiz{
     return Data[((((((p1*D2+p2)*D3+p3)*D4+p4)*D5+p5)*D6+p6)*D7+p7)*D8+p8];
 #endif
   };
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6,int p7,int p8){
-#ifdef __CUDA_ARCH__
-    return DataDevice[(((((((p8-1)*D7+p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
-#else
-    return Data[(((((((p8-1)*D7+p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
-#endif
-  };
+/*   template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int p1,int p2,int p3,int p4,int p5,int p6,int p7,int p8){ */
+/* #ifdef __CUDA_ARCH__ */
+/*     return DataDevice[(((((((p8-1)*D7+p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1]; */
+/* #else */
+/*     return Data[(((((((p8-1)*D7+p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1]; */
+/* #endif */
+/*   }; */
   template<class type> __cond_host_device__ type&Matrix_T<type>::fat(int p1,int p2,int p3,int p4,int p5,int p6,int p7,int p8){
 #ifdef __CUDA_ARCH__
     return DataDevice[(((((((p8-1)*D7+p7-1)*D6+p6-1)*D5+p5-1)*D4+p4-1)*D3+p3-1)*D2+p2-1)*D1+p1-1];
@@ -668,10 +668,10 @@ namespace evawiz{
     return fPart(pArr);
   }
 
-  template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int *pArr)
-  {
-    return fPart(pArr);
-  }
+  /* template<class type> __cond_host_device__ type&Matrix_T<type>::operator()(char ch,int *pArr) */
+  /* { */
+  /*   return fPart(pArr); */
+  /* } */
 
   template<class type> void Matrix_T<type>::Init(int *dimArr,int dataPosition,bool veryInit)
   {
@@ -869,14 +869,14 @@ namespace evawiz{
         for ( u_int i=0; i< size; i++ )
           ifs >> Data[i];
       }else if ( ND == 2 ){
-        for ( int j=0; j<D2; j++)
-          for ( int i=0; i<D1; i++ )
+        for ( u_int j=0; j<D2; j++)
+          for ( u_int i=0; i<D1; i++ )
             ifs >> (*this)(i,j);
         
       }else{
-        for ( int k=0; k<D3; k++ )
-          for ( int j=0; j<D2; j++)
-            for ( int i=0; i<D1; i++ )
+        for ( u_int k=0; k<D3; k++ )
+          for ( u_int j=0; j<D2; j++)
+            for ( u_int i=0; i<D1; i++ )
               ifs >> (*this)(i,j,k);
       }
       ifs.close();
@@ -960,16 +960,16 @@ namespace evawiz{
     os<<"SCALARS volume_scalars float 1"<<"\n";
     os<<"LOOKUP_TABLE default"<<"\n";
     if ( ND == 3 ){
-      for (int k=0; k<D3; k++)
-        for (int j=0; j<D2; j++)
-          for (int i=0; i< D1; i++)
+      for (u_int k=0; k<D3; k++)
+        for (u_int j=0; j<D2; j++)
+          for (u_int i=0; i< D1; i++)
             os<<(*this)(i,j,k)<<"\n";
     }else if ( ND == 2 ){
-      for (int j=0; j<D2; j++)
-        for (int i=0; i< D1; i++)
+      for (u_int j=0; j<D2; j++)
+        for (u_int i=0; i< D1; i++)
           os<<(*this)(i,j)<<"\n";
     }else{
-      for (int i=0; i< D1; i++)
+      for (u_int i=0; i< D1; i++)
         os<<(*this)(i)<<"\n";
     }
     os.close();

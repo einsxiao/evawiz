@@ -22,7 +22,8 @@ clean: $(CLEANDIRS)
 $(CLEANDIRS): 
 	$(MAKE) -C $(@:clean-%=%) clean
 install: $(INSTALLDIRS)
-	@cp bin/evawiz ../bin/evawiz
+	#@cp bin/evawiz ../bin/evawiz
+	@echo "make install"
 $(INSTALLDIRS):
 	$(MAKE) -C $(@:install-%=%) install
 

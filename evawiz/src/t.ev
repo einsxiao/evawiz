@@ -1,3 +1,5 @@
 #!/usr/bin/env evawiz
 
 {}.Append[3]
+#a+b+a
+3+4+3

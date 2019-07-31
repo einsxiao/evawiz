@@ -14,8 +14,8 @@ MPIFORCC := mpifort
 ################################################################
 MAKE := make
 ################################################################
-FLAGS := -std=c++11 -O2 --compiler-options -Wno-unused-function 
-DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g3  --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions --compiler-options -Wno-unused-function 
+FLAGS := -std=c++11 -O2 --compiler-options -Wno-unused-function  --compiler-options -Wno-sign-compare
+DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g3  --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions --compiler-options -Wno-unused-function   --compiler-options -Wno-sign-compare
 FORFLAGS := -O2
 DFORFLAGS := -g3 -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter 
 ################################################################

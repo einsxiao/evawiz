@@ -3,7 +3,7 @@ PPCC = g++
 DIRS = 
 LIBS = -ldl
 ##################################################################################
-DFLAGS :=  -std=c++11 -g3 -D DEBUG -Wall -Wextra -Wno-unused-parameter
+DFLAGS :=  -std=c++11 -g3 -D DEBUG -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare
 FLAGS := -std=c++11 -O2 
 
 ##################################################################################

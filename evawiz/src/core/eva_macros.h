@@ -139,12 +139,12 @@
 
 #ifdef DEBUG
 #  define ThrowError(...)  ({                                 \
-      cerr<<endl<<"Error at: "<< __FILE__ <<":"<<__LINE__<<endl;  \
+      cerr<<endl<<"Error at: "<< __FILE__ <<"("<<__LINE__<<") "<<string(#__VA_ARGS__)<<endl; \
       evawiz::Error err(__VA_ARGS__); err.trace(); throw err; \
     })
 #else
 #  define ThrowError(...)  ({                         \
-      cerr<<endl<<"Error at: "<< __FILE__ <<":"<<__LINE__<<endl;  \
+      cerr<<endl<<"Error at: "<< __FILE__ <<"("<<__LINE__<<") "<<string(#__VA_ARGS__)<<endl; \
       evawiz::Error err(__VA_ARGS__); throw err;      \
     })
 #endif

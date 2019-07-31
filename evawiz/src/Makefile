@@ -66,7 +66,7 @@ $(DOUT):	$(BUILDDIRS) $(DOBJECTS)
 $(BUILDDIRS):
 	@echo "Dealing dir $(@:build-%=%)"
 	#@cp $(@:build-%=%)/*.h ../include/
-	-$(MAKE) -C $(@:build-%=%) $(MODE)
+	$(MAKE) -C $(@:build-%=%) $(MODE)
 	#@cp $(@:build-%=%)/*.so ../lib/
 install: 
 	rmcp -f $(OUT) ../bin/

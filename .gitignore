@@ -25,8 +25,9 @@
 /eva_modules/
 /soft
 /favicon.ico
-/scripts
 /tmp
+!/scripts/
+/scripts/*
 !/scripts/eva*
 !/scripts/Crypto
 !/scripts/mod_requests
