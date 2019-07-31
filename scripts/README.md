@@ -1,20 +1,6 @@
 # evanetwork
 The network scripts for EVAWIZ project.
 
-## install evawiz env
-download the script update-eva
-
-Usage: update-eva |[operation]
-    If no argument is given, operation is treated as standard.
-    Operation value and actions:
-      standard
-        update with standard download.
-      maximum
-        update with maximun download.
-      test
-        just test update-eva without downling things
-
-
 ## command eva Usage
 Usage: eva [operation] [operants]
   Valid operations: 
