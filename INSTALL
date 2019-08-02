@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt install gcc g++ nvidia-cuda-toolkit python python3 openmpi fftw virtualenv
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd $ROOT
 make -C evawiz release
