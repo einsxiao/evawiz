@@ -174,8 +174,9 @@ add_path   bin
 
 #add_dir   python3
 
-add_dir    evawiz
-add_pypath scripts
+add_dir      evawiz
+add_pypath   scripts
+add_include  /usr/include/openmpi/
 
 source $EVAWIZ_ROOT/evawiz.source.local
 
