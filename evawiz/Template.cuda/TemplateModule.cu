@@ -23,7 +23,7 @@ DefineFunction(TestFunction,"A test Function can be called both from c/c++/cudac
   cout<<"Module Template is created from the standard template."<<endl;
   Matrix arr;
   arr.Init(2,3,3);
-  arr= 3.14;
+  arr = 3.14;
   cout<<arr<<endl;
   arr.HostToDevice();
 #pragma evawiz launch kernel<<<i:3,j:3>>>(Matrix mat:arr)

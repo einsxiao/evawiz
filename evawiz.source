@@ -12,7 +12,8 @@ export EVAWIZ_OS_TYPE=`$ROOT/bin/os-type`
 
 #launch evil-emacs in no-window mode
 function evanw() { 
-  emacs -nw $@ -l $EVAWIZ_ROOT/etc/emacs/site-lisp/default.el; 
+  #emacs -nw $@ -l $EVAWIZ_ROOT/etc/emacs/site-lisp/default.el; 
+  emacs -nw $@ -l $EVAWIZ_ROOT/etc/emacs/init.el; 
 }
 
 #load program command evaload

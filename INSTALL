@@ -10,9 +10,9 @@ sed -i "s#ROOT=\/opt\/evawiz#ROOT=$EVAWIZ_ROOT#"  $EVAWIZ_ROOT/evawiz.source
 if ! [ -d $idr ];then
   dir=/opt/evawiz
 fi
-re=`cat ~/.bashrc |grep "source $dir/evawiz.source"`
+re=`cat ~/.bashrc |grep "source $EVAWIZ_ROOT/evawiz.source"`
 if [ "x$re" == "x" ]; then
-  echo "source $dir/evawiz.source">>~/.bashrc
-  source $dir/evawiz.source
+  echo "source $EVAWIZ_ROOT/evawiz.source">>~/.bashrc
+  source $EVAWIZ_ROOT/evawiz.source
 fi
 

@@ -33,3 +33,6 @@ DefineFunction(TestFunction){
 }
 
 
+/*
+  (du-onekey-compile) 
+ */
