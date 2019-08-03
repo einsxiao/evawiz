@@ -18,8 +18,7 @@ no_gpu_env #uncomment if gpu presented
 #evaloadsilent ParaView5
 #evaloadsilent Matlab-R2015b 
 
-add_abs_dir /usr/local/cuda
-add_abs_include /usr/include/python3.5
-add_abs_lib /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
-add_dir openmpi
+add_dir /usr/local/cuda
+add_include /usr/include/python3.5
+add_lib /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
 

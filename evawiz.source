@@ -30,6 +30,10 @@ function add_include()
   for t_dir_var in $* ; do 
     if [ -d $EVAWIZ_ROOT/$t_dir_var ];then
       EVAWIZ_INCLUDE_PATH=$EVAWIZ_ROOT/$t_dir_var:$EVAWIZ_INCLUDE_PATH
+      break
+    elif [ -d $t_dir_var ];then
+      EVAWIZ_INCLUDE_PATH=$t_dir_var:$EVAWIZ_INCLUDE_PATH
+      break
     fi
   done; 
   export EVAWIZ_INCLUDE_PATH
@@ -41,6 +45,11 @@ function add_lib()
     if [ -d $EVAWIZ_ROOT/$t_dir_var ];then
       LD_LIBRARY_PATH=$EVAWIZ_ROOT/$t_dir_var:$LD_LIBRARY_PATH
       EVAWIZ_LIBRARY_PATH=$EVAWIZ_ROOT/$t_dir_var:$EVAWIZ_LIBRARY_PATH
+      break
+    elif [ -d $t_dir_var ];then
+      LD_LIBRARY_PATH=$t_dir_var:$LD_LIBRARY_PATH
+      EVAWIZ_LIBRARY_PATH=$t_dir_var:$EVAWIZ_LIBRARY_PATH
+      break
     fi
   done; 
   export LD_LIBRARY_PATH
@@ -52,6 +61,10 @@ function add_path()
   for t_dir_var in $* ; do 
     if [ -d $EVAWIZ_ROOT/$t_dir_var ];then
       PATH=$EVAWIZ_ROOT/$t_dir_var:$PATH
+      break
+    elif [ -d $t_dir_var ];then
+      PATH=$t_dir_var:$PATH
+      break
     fi
   done; 
   export PATH
@@ -60,10 +73,20 @@ function add_path()
 function add_dir()
 { 
   for x_t_dir_var in $* ; do  
-    t_path_var=$x_t_dir_var/include;  add_include $t_path_var
-    t_path_var=$x_t_dir_var/lib;      add_lib     $t_path_var
-    t_path_var=$x_t_dir_var/lib64;    add_lib     $t_path_var
-    t_path_var=$x_t_dir_var/bin;      add_path    $t_path_var
+    if [ -d $EVAWIZ_ROOT/$t_dir_var ];then
+      t_path_var=$x_t_dir_var/include;  add_include $t_path_var
+      t_path_var=$x_t_dir_var/lib;      add_lib     $t_path_var
+      t_path_var=$x_t_dir_var/lib64;    add_lib     $t_path_var
+      t_path_var=$x_t_dir_var/bin;      add_path    $t_path_var
+      break
+    elif [ -d $t_dir_var ];then
+      t_path_var=$x_t_dir_var/include;  add_include $t_path_var
+      t_path_var=$x_t_dir_var/lib;      add_lib     $t_path_var
+      t_path_var=$x_t_dir_var/lib64;    add_lib     $t_path_var
+      t_path_var=$x_t_dir_var/bin;      add_path    $t_path_var
+      break
+    fi
+
   done; 
 }
 
@@ -72,60 +95,64 @@ function add_pypath()
   for t_dir_var in $* ; do 
     if [ -d $EVAWIZ_ROOT/$t_dir_var ];then
       PYTHONPATH=$EVAWIZ_ROOT/$t_dir_var:$PYTHONPATH
+      break
+    elif [ -d $t_dir_var ];then
+      PYTHONPATH=$t_dir_var:$PYTHONPATH
+      break
     fi
   done; 
   export PYTHONPATH
 }
 
-function add_abs_include()
-{ 
-  for t_dir_var in $* ; do 
-    if [ -d $t_dir_var ];then
-      EVAWIZ_INCLUDE_PATH=$t_dir_var:$EVAWIZ_INCLUDE_PATH
-    fi
-  done; 
-  export EVAWIZ_INCLUDE_PATH
-}
+# function add_abs_include()
+# { 
+#   for t_dir_var in $* ; do 
+#     if [ -d $t_dir_var ];then
+#       EVAWIZ_INCLUDE_PATH=$t_dir_var:$EVAWIZ_INCLUDE_PATH
+#     fi
+#   done; 
+#   export EVAWIZ_INCLUDE_PATH
+# }
 
-function add_abs_lib()
-{ 
-  for t_dir_var in $* ; do 
-    if [ -d $t_dir_var ];then
-      LD_LIBRARY_PATH=$t_dir_var:$LD_LIBRARY_PATH
-      EVAWIZ_LIBRARY_PATH=$t_dir_var:$EVAWIZ_LIBRARY_PATH
-    fi
-  done; 
-  export LD_LIBRARY_PATH
-  export EVAWIZ_LIBRARY_PATH
-}
+# function add_abs_lib()
+# { 
+#   for t_dir_var in $* ; do 
+#     if [ -d $t_dir_var ];then
+#       LD_LIBRARY_PATH=$t_dir_var:$LD_LIBRARY_PATH
+#       EVAWIZ_LIBRARY_PATH=$t_dir_var:$EVAWIZ_LIBRARY_PATH
+#     fi
+#   done; 
+#   export LD_LIBRARY_PATH
+#   export EVAWIZ_LIBRARY_PATH
+# }
 
-function add_abs_path()
-{ 
-  for t_dir_var in $* ; do 
-    if [ -d $t_dir_var ];then
-      export PATH=$t_dir_var:$PATH
-    fi
-  done; 
-}
+# function add_abs_path()
+# { 
+#   for t_dir_var in $* ; do 
+#     if [ -d $t_dir_var ];then
+#       export PATH=$t_dir_var:$PATH
+#     fi
+#   done; 
+# }
 
-function add_abs_dir()
-{ 
-  for x_t_dir_var in $* ; do  
-    t_path_var=$x_t_dir_var/include;  add_abs_include $t_path_var
-    t_path_var=$x_t_dir_var/lib;      add_abs_lib     $t_path_var
-    t_path_var=$x_t_dir_var/lib64;    add_abs_lib     $t_path_var
-    t_path_var=$x_t_dir_var/bin;      add_abs_path    $t_path_var
-  done; 
-}
+# function add_abs_dir()
+# { 
+#   for x_t_dir_var in $* ; do  
+#     t_path_var=$x_t_dir_var/include;  add_abs_include $t_path_var
+#     t_path_var=$x_t_dir_var/lib;      add_abs_lib     $t_path_var
+#     t_path_var=$x_t_dir_var/lib64;    add_abs_lib     $t_path_var
+#     t_path_var=$x_t_dir_var/bin;      add_abs_path    $t_path_var
+#   done; 
+# }
 
-function add_abs_pypath()
-{
-    for t_dir_var in $* ; do 
-        if [ -d $t_dir_var ];then
-            export PYTHONPATH=$t_dir_var:$PYTHONPATH
-        fi
-    done; 
-}
+# function add_abs_pypath()
+# {
+#     for t_dir_var in $* ; do 
+#         if [ -d $t_dir_var ];then
+#             export PYTHONPATH=$t_dir_var:$PYTHONPATH
+#         fi
+#     done; 
+# }
 
 function add_matlab()
 { 
@@ -133,10 +160,10 @@ function add_matlab()
     MATLAB_ROOT=$TMP_ROOT
     if [ -d $MATLAB_ROOT ];then
         export MATLAB_ROOT
-        add_abs_include $TMP_ROOT/extern/include
-        add_abs_path $TMP_ROOT/bin
-        add_abs_lib $TMP_ROOT/bin/glnxa64/ 
-        add_abs_lib $TMP_ROOT/sys/os/glnxa64/
+        add_include $TMP_ROOT/extern/include
+        add_path $TMP_ROOT/bin
+        add_lib $TMP_ROOT/bin/glnxa64/ 
+        add_lib $TMP_ROOT/sys/os/glnxa64/
 
     fi
 }
@@ -147,9 +174,9 @@ function add_mathematica()
     MATHEMATICA_ROOT=$TMP_ROOT
     if [ -d $MATHEMATICA_ROOT ];then
         export MATHEMATICA_ROOT
-        add_abs_path $TMP_ROOT/Executables/
-        add_abs_lib $TMP_ROOT/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
-        add_abs_include $TMP_ROOT/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
+        add_path $TMP_ROOT/Executables/
+        add_lib $TMP_ROOT/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
+        add_include $TMP_ROOT/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-64/CompilerAdditions
 
     fi
 }

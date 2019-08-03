@@ -32,13 +32,11 @@ in-all: debug
 
 all: release debug
 
-install: 
-	@rmcp $(EXCU) ~/evawiz/bin/
+install: release
 
 debug: all-prepare dexe post-work
 
 release: all-prepare exe post-work
-	@rmcp $(EXCU) ~/evawiz/bin/
 
 ########################################################################################################
 dexe: $(DOBJECTS)
@@ -75,6 +73,7 @@ all-prepare:
 	$(shell if [ -f build/release ]; then rm build/release; mkdir build/release; elif ! [ -d build/release ]; then mkdir build/release; fi; )
 
 post-work:
+	@rmcp $(EXCU) ../../bin/
 
 upload:
 	@echo "Upload to Evawiz server"
