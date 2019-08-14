@@ -123,7 +123,7 @@ try:
     emacs_path = 'emacs'
     pass
   emacs_path = 'emacs'
-  emacs_path +=" -l $EVAWIZ_ROOT/etc/emacs/site-lisp/default.el "
+  emacs_path +=" -l $EVAWIZ_ROOT/etc/emacs/init.el "
   sysargv,options=argv2argsoptions(sys.argv,['version','help','edit','run','nowindow','local'],{'?':'help','h':'help','v':'version','r':'run','e':'edit','u':'user','g':'group','p':'perm','t':'type','b':'branch','nw':'nowindow'})
   #no argument
   if (len(sys.argv) == 1):

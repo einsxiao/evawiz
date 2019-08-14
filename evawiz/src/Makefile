@@ -4,7 +4,7 @@ DCC := nvcc
 FLAGS := -std=c++11 
 DFLAGS := -std=c++11 -G -g
 
-DNVFLAGS := $(FLAGS) -G -g --compiler-options -g3  --compiler-options -Wall --compiler-options -Wextra -D DEBUG --compiler-options -Wno-unused-parameter --compiler-options -fopenmp  -Wno-deprecated-gpu-targets
+DNVFLAGS := $(FLAGS) -G -g --compiler-options -g  --compiler-options -Wall --compiler-options -Wextra -D DEBUG --compiler-options -Wno-unused-parameter --compiler-options -fopenmp  -Wno-deprecated-gpu-targets
 NVFLAGS := $(FLAGS) -O2 --compiler-options -fopenmp  -Wno-deprecated-gpu-targets
 
 ##################################################################################
@@ -40,34 +40,33 @@ prepare:
 	$(eval MODE = release )
 
 ALL: $(OUT)
-	rmcp -f $(OUT) ../bin/
-	rmcp -f $(OUT) ../../bin/
-	rmcp -f $(DOUT) ../bin/
-	rmcp -f $(DOUT) ../../bin/
+#	rmcp -f $(OUT) ../../bin/
 	rmcp -f ../Template/Makefile ../Template.cuda/
 	rmcp -f ../Template/Makefile ../Template.fortran/
-	#rm  ../lib/*-dev.so
+#	rm  ../lib/*-dev.so
 $(OUT):	$(BUILDDIRS) $(OBJECTS) 
 #	$(DCC) $(FLAGS) -o $@ $(OBJECTS) $(INCLUDE) -leva -lcudart -lmpi -lmpi_cxx
 	$(DCC) $(NVFLAGS) -o $@ $(OBJECTS) $(INCLUDE) -leva
+	@rmcp -f $(OUT) ../bin/
 %.o: %.cpp
 #	$(DCC) $(FLAGS) -c -fPIC $< -o $@ $(INCLUDE)
 	$(DCC) $(NVFLAGS) -Xcompiler -fPIC -c  $< -o $@ $(INCLUDE)
 
 DALL: $(DOUT)
 $(DOUT):	$(BUILDDIRS) $(DOBJECTS) 
-	#mpic++ $(FLAGS)  -o $@ $(DOBJECTS) $(INCLUDE) -leva-dev -lcudart -lmpi -lmpi_cxx
+#	mpic++ $(DFLAGS)  -o $@ $(DOBJECTS) $(INCLUDE) -leva-dev -lcudart -lmpi -lmpi_cxx
 #	$(DCC) $(FLAGS)  -o $@ $(DOBJECTS) $(INCLUDE) -leva-dev -lcudart -lmpi -lmpi_cxx
-	$(DCC) $(NVFLAGS)  -o $@ $(DOBJECTS) $(INCLUDE) -leva-dev 
+	$(DCC) $(DNVFLAGS)  -o $@ $(DOBJECTS) $(INCLUDE) -leva
+	@rmcp -f $(DOUT) ../../bin/
 %.dev.o: %.cpp
-#	$(DCC) $(FLAGS) -c -fPIC $< -o $@ $(INCLUDE)
-	$(DCC) $(NVFLAGS) -Xcompiler -fPIC -c $< -o $@ $(INCLUDE)
+#	$(DCC) $(DFLAGS) -c -fPIC $< -o $@ $(INCLUDE)
+	$(DCC) $(DNVFLAGS) -Xcompiler -fPIC -c $< -o $@ $(INCLUDE)
 
 $(BUILDDIRS):
 	@echo "Dealing dir $(@:build-%=%)"
-	#@cp $(@:build-%=%)/*.h ../include/
+#	@cp $(@:build-%=%)/*.h ../include/
 	$(MAKE) -C $(@:build-%=%) $(MODE)
-	#@cp $(@:build-%=%)/*.so ../lib/
+#	@cp $(@:build-%=%)/*.so ../lib/
 install: 
 	rmcp -f $(OUT) ../bin/
 	rmcp -f $(OUT) ../../bin/

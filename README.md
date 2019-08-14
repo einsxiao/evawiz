@@ -1,13 +1,12 @@
-The following componnents are required:
+下列包需要被安装
 ```
-gcc g++ nvidia-cuda-toolkit python python3 openmpi fftw
+gcc g++ nvidia-cuda-toolkit python python3 openmpi virtualenv libopenmpi-dev libfftw3-dev libfftw3-mpi-dev
 ```
+安装后需要修改
 
-working combination tested:
-<gcc/g++-4.8, cuda-10.01>; <gcc/g++-5.4, cuda-10.01>
-
-Steps to install:
+安装步骤
 ```
 git clone https://github.com/einsxiao/evawiz ~/.evawiz
-~/.evawiz/INSTALL
 ```
+然后需要修改
+~/.evawiz/INSTALL

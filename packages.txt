@@ -1,2 +1,14 @@
 openmpi-common
 libopenmpi-dev
+gcc 
+g++ 
+nvidia-cuda-toolkit 
+python 
+python3 
+openmpi 
+virtualenv 
+libopenmpi-dev 
+libfftw3-dev 
+libfftw3-mpi-dev
+texinfo
+ncurses-dev

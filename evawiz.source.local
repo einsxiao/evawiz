@@ -11,14 +11,11 @@ export EVAWIZ_SERVER_PORT=5555
 
 no_gpu_env #uncomment if gpu presented
 
-
 #evaloadsilent lapack
 #evaloadsilent fftw3
 #evaloadsilent accfft
 #evaloadsilent ParaView5
 #evaloadsilent Matlab-R2015b 
-
-add_dir /usr/local/cuda
-add_include /usr/include/python3.5
-add_lib /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
+#alias gdb='gdb -D $EVAWIZ_ROOT/etc/gdb/data -ix $EVAWIZ_ROOT/etc/gdb/gdbinit'
+#alias gdb='gdb -ix $EVAWIZ_ROOT/etc/gdb/gdbinit'
 

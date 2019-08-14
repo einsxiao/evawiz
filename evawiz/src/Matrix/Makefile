@@ -16,9 +16,9 @@ MPIFORCC := mpifort
 MAKE := make
 ################################################################
 FLAGS := -std=c++11 -O2 --compiler-options -Wno-unused-function --compiler-options -Wno-sign-compare
-DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g3  --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions --compiler-options -Wno-unused-function --compiler-options -Wno-sign-compare
+DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g  --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions --compiler-options -Wno-unused-function --compiler-options -Wno-sign-compare
 FORFLAGS := -O2
-DFORFLAGS := -g3 -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter 
+DFORFLAGS := -g -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter 
 ################################################################
 MODULE_NAME := $(notdir $(CURDIR))Module
 EXCU := exe
@@ -90,7 +90,7 @@ release: all-prepare CPPALL$(OSFIX) $(CUDAVERSION) post-work
 ########################################################################################################
 DCUALL: $(DALLCUOBJECTS)
 	$(CC) $(DFLAGS) -shared -o lib$(MODULE_NAME)_cuda-dev.so $(DALLCUOBJECTS) $(CUINCLUDE)  $(LIBS) $(CULIBS)
-	$(CC) $(DFLAGS) -o $(EXCU)_cuda $(DALLCUOBJECTS) $(CUINCLUDE) $(LIBS) -leva
+	$(CC) $(DFLAGS) -o $(EXCU) $(DALLCUOBJECTS) $(CUINCLUDE) $(LIBS) -leva
 DCPPALL: $(DALLCPPOBJECTS)
 	$(CC) $(DFLAGS) -fc++ -shared -o lib$(MODULE_NAME)-dev.so $(DALLCPPOBJECTS) $(INCLUDE)  $(LIBS) 
 	$(CC) $(DFLAGS) -fc++ -o $(EXCU) $(DALLCPPOBJECTS) $(INCLUDE) $(LIBS) -leva

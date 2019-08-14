@@ -3,7 +3,7 @@ PPCC = g++
 DIRS = 
 LIBS = -ldl
 ##################################################################################
-DFLAGS :=  -std=c++11 -g3 -D DEBUG -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare
+DFLAGS :=  -std=c++11 -g -D DEBUG -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare
 FLAGS := -std=c++11 -O2 
 
 ##################################################################################
@@ -23,7 +23,8 @@ ALLOBJECTS := $(OBJECTS)
 INCLUDE = `eva-path tcpp`
 MAKE = make
 OUT = libeva.so
-DOUT = libeva-dev.so
+#DOUT = libeva-dev.so
+DOUT = libeva.so
 
 
 debug: prepare-all debug-prepare DALL  post-work

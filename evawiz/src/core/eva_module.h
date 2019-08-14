@@ -82,9 +82,9 @@ namespace evawiz{
     eva.argc = argc; eva.argv = argv;                           \
     try{                                                        \
       eva.EvaluateFile(file);                                   \
-    }catch ( const ExceptionQuit&err ){                         \
+    }catch ( const evawiz::ExceptionQuit&err ){                 \
       return err.code;                                          \
-    }catch ( const Error&err){                                  \
+    }catch ( const evawiz::Error&err){                          \
       cerr<<endl<<err.what()<<endl;                             \
     }catch ( const exception &err){                             \
       cerr<<endl<<"Sourcecode::Error: "<<err.what()<<endl;      \
@@ -97,20 +97,20 @@ namespace evawiz{
   }                                                                 
 
 #define ModuleInitialize                                                \
-  static Object __module_function_list;                                 \
+  static evawiz::Object __module_function_list;                         \
   static int __register_function(string func){                          \
     if ( __module_function_list.NullQ() )                               \
       __module_function_list.SetList_List();                            \
     __module_function_list.PushBackSymbol( func.c_str() );              \
     return 0;                                                           \
   }                                                                     \
-  extern "C" Object ReturnFunctionsType(){                              \
+  extern "C" evawiz::Object ReturnFunctionsType(){                      \
     return __module_function_list;                                      \
   };                                                                    \
-  extern "C" Module *CreateModuleType(string name,string moduledir){    \
+  extern "C" evawiz::Module *CreateModuleType(string name,string moduledir){ \
     return new ModuleType(moduledir);                                   \
   }                                                                     \
-  extern "C" void DestroyModuleType(Module*p){ delete (ModuleType*)p; } \
+  extern "C" void DestroyModuleType(evawiz::Module*p){ delete (ModuleType*)p; } \
   ModuleType::ModuleType(string __module_src_dir):Module(ModuleNameStr,__module_src_dir)
 ////////////////////////////////////////////////////////////////////////////////////////
 #define ModuleFinalize ModuleType::~ModuleType()

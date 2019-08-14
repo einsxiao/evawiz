@@ -2,6 +2,8 @@
 ####################################################
 # This is an input test script for current module  #
 ####################################################
+#ReplaceAll[a+b+b+c+a,{a___+b_+b_+c___->a+2*b+c}]
+#ReplaceAll[a+a+2*b+c,{a___+b_+b_+c___->a+2*b+c}]
 GetModule['Template']
 TestFunction[]
 Exit

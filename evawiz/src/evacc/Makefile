@@ -12,7 +12,7 @@ CPPCC := g++
 MAKE := make
 INCLUDE := 
 ################################################################
-DFLAGS :=  -std=c++11 -g3 -D DEBUG -Wall -Wextra -Wno-unused-parameter  
+DFLAGS :=  -std=c++11 -g -D DEBUG -Wall -Wextra -Wno-unused-parameter  
 FLAGS := -std=c++11 -O2 
 ################################################################
 INCLUDE :=  `eva-path evacc`
@@ -34,7 +34,8 @@ all: release debug
 
 install: release
 
-debug: all-prepare dexe post-work
+#debug: all-prepare dexe post-work
+debug: all-prepare exe post-work
 
 release: all-prepare exe post-work
 

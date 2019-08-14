@@ -70,13 +70,11 @@
 (add-to-list 'ac-dictionary-directories (concat etc-dir "auto-complete/ac-dict") )
 (ac-config-default)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path (concat etc-dir "modes") ) 
 (require 'sql)
 (require 'web-mode)
 (require 'cuda)
-(require 'keybinding)
 (require 'evawiz)
 
 
@@ -85,5 +83,4 @@
 (add-to-list 'ac-modes 'evawiz-ev-mode)
 (add-to-list 'ac-modes 'evawiz-multi-mode)
 
-;(add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.wxss\\'" . css-mode))
+(require 'keybinding)

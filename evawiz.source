@@ -104,56 +104,6 @@ function add_pypath()
   export PYTHONPATH
 }
 
-# function add_abs_include()
-# { 
-#   for t_dir_var in $* ; do 
-#     if [ -d $t_dir_var ];then
-#       EVAWIZ_INCLUDE_PATH=$t_dir_var:$EVAWIZ_INCLUDE_PATH
-#     fi
-#   done; 
-#   export EVAWIZ_INCLUDE_PATH
-# }
-
-# function add_abs_lib()
-# { 
-#   for t_dir_var in $* ; do 
-#     if [ -d $t_dir_var ];then
-#       LD_LIBRARY_PATH=$t_dir_var:$LD_LIBRARY_PATH
-#       EVAWIZ_LIBRARY_PATH=$t_dir_var:$EVAWIZ_LIBRARY_PATH
-#     fi
-#   done; 
-#   export LD_LIBRARY_PATH
-#   export EVAWIZ_LIBRARY_PATH
-# }
-
-# function add_abs_path()
-# { 
-#   for t_dir_var in $* ; do 
-#     if [ -d $t_dir_var ];then
-#       export PATH=$t_dir_var:$PATH
-#     fi
-#   done; 
-# }
-
-# function add_abs_dir()
-# { 
-#   for x_t_dir_var in $* ; do  
-#     t_path_var=$x_t_dir_var/include;  add_abs_include $t_path_var
-#     t_path_var=$x_t_dir_var/lib;      add_abs_lib     $t_path_var
-#     t_path_var=$x_t_dir_var/lib64;    add_abs_lib     $t_path_var
-#     t_path_var=$x_t_dir_var/bin;      add_abs_path    $t_path_var
-#   done; 
-# }
-
-# function add_abs_pypath()
-# {
-#     for t_dir_var in $* ; do 
-#         if [ -d $t_dir_var ];then
-#             export PYTHONPATH=$t_dir_var:$PYTHONPATH
-#         fi
-#     done; 
-# }
-
 function add_matlab()
 { 
     TMP_ROOT=$1
@@ -181,29 +131,23 @@ function add_mathematica()
     fi
 }
 
-
-
-
 export PKG_CONFIG_PATH=$EVAWIZ_ROOT/pkgconfig/:$PKG_CONFIG_PATH
 
-add_path   bin
-#add_path  base/cmake/bin
-
-#add_dir   gcc 
-#add_dir   cuda-7.0
-#add_dir   openmpi
-
-#add_dir   gdb 
-
-
-#add_dir   python
-#add_include python/include/python2.7
-
-#add_dir   python3
-
+add_path     bin
 add_dir      evawiz
 add_pypath   scripts
+add_dir      gdb
+add_dir      emacs
+
+add_dir /usr/local/cuda
 add_include  /usr/include/openmpi/
+py_inc=`find /usr/include/ -type d -name "python3.*"`
+add_include $py_inc
+py_inc=`find /usr/lib/ -type d -name "python3.*"`
+py_lib=`find $py_inc -type d -name "config*"`
+add_lib $py_lib
 
 source $EVAWIZ_ROOT/evawiz.source.local
+
+
 

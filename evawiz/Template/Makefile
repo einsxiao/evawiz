@@ -16,10 +16,10 @@ MAKE := make
 SHELL := /bin/bash
 ################################################################
 FLAGS := -std=c++11 -O2
-DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g3  --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions
+DFLAGS := -std=c++11 -g -G -D DEBUG --compiler-options -g --compiler-options -Wall --compiler-options -Wextra --compiler-options -Wno-unused --compiler-options -Wno-unused-parameter  --compiler-options -fno-inline-functions
 DFLAGS := -std=c++11 -g -DDEBUG
 FORFLAGS := -O2
-DFORFLAGS := -g3 -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter 
+DFORFLAGS := -g -D DEBUG -Wall -Wextra  -Wno-unused -Wno-unused-parameter 
 ################################################################
 MODULE_NAME := $(notdir $(CURDIR))Module
 CUDAVERSION := $(wildcard *.cu)
